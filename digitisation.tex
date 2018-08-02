@@ -70,59 +70,186 @@
 \altaffiltext{\Melbourne}{School of Physics, University of Melbourne, Parkville, VIC 3010, Australia}
 \email{christian.reichardt@unimelb.edu.au}
 
-\begin{abstract}
-
-It's awesome!
+\begin{abstract} % copied off ASA for now
+Observations of the Cosmic Microwave Background (CMB) are of immense value to modern cosmology. However, future CMB experiments must confront challenges in mission planning, hardware and analysis that arise from the sheer size of the time-ordered-data being recorded. These challenges are particularly significant for Antarctic and satellite experiments which depend on satellite links to transmit the data. We investigate using extreme digitisation to address these challenges. Unlike lossless compression, extreme digitisation introduces additional noise into the data. We present an optimal 1, 2 and 3 bit digitisation schemes and lay out how the added noise varies between the schemes and as a function of hits per pixel in the map for temperature and polarisation observations. We show that the noise penalty of 3 bit digitisation is at the percent-level for CMB power spectrum measurements. This is impressive considering that it would reduce the data volume by an order of magnitude. We argue that extreme digitisation is a promising strategy for upcoming experiments.
 \end{abstract}
 
 \keywords{ cosmic background radiation --- polarization }
 \section{Introduction}
 \label{sec:intro}
 
-CMB is great; One reason is that there is a history of compression and computational techniques that reduce the load of large datasets. ie maps; bandpowers; pseudo-cls.
+Observations of the Cosmic Microwave Background (CMB) have played a key role since 1964 (discovery paper). Current and future CMB experiments will continue to deliver new insights by studying the temperature and polarisation information contained in the CMB. These will constrain help putting tighter constraints on cosmological models. The most prominent science goal is the discovery of the imprint left by inflationary gravitational waves. Additionally studies of CMB lensing and the SZ effects will deliver new insight. CMB experiments however also provide a valuable counterpart to ground-based particle physics experiments, as they probe the relativisitc number of species, the helium fraction and the neutrino mass sum.
 
-satellites have also reduced bits on TOD; ground based haven't had to yet
+The outstanding contribution of CMB science to modern physics has demanded a high standard of data analysis. The CMB community has developed a variety of compression and computational techniques to manage the increasing influx of data, while maximising the science output. These include the compression of time-ordered data into maps, bandpower estimation and the pseudo Cl method.
 
-however as we discuss building ever larger arrays at remote sites, we are starting to be limited: spt example.
+A growing hurdle for experiments at remote locations are the transmission limitations of satellite links. Space-based experiments have employed a combination of lossless and lossy compression techniques, including reduced bits in the time-ordered-data (TOD). Antarctica based experiments that transmit a portion of their data via a satellite link have downsampled their TOD in the past to meet their telemetry requirements. They have yet to exploit few bit digitisation of the TOD.
 
-in this work we present digitisation for ground-based cmb polarisation measurements.
-teaser results
+As we approach the next generation of ground-based experiments, Stage-4, and the launch of a new generation of space-based missions (liteBIRD, PIXIE, COrE+), we must treat the transmission bottleneck carefully. Without a review of the current compression techniques employed we are sure to lose information.
+
+In this work we present the method of extreme, i.e. few-bit digitisation, and detail its effect when applied to the TOD. To highlight the consequences we investigate temperature and polarisation powerspectra. We find that an optimal 3-bit digitisatio scheme adds as little as $\sim 2\%$ to the map noise level. While the digtisation schemes described here are primarily laid out for ground-based Stage-4 experiments, future space-based missions must employ a similar digitisation as a step of their compression algorithm.
+
+This work is structured as follows. We present the digitisation schemes in \S\ref{sec:dig}, by formulating them mathematically, motivating their use and describing the framework employed to test their performance. In \S\ref{sec:results} we present the results obtained. We summarize our findings in \S\ref{sec:conclusions}. 
 
 
-The outline of this paper is as follows. 
-We present the digisation schemes in \S\ref{sec:dig}, and their performance in \S\ref{sec:results}
-We summarize our findings in \S\ref{sec:conclusions}. 
+
+%CMB is great; One reason is that there is a history of compression and computational techniques that reduce the load of large datasets. ie maps; bandpowers; pseudo-cls.
+
+%satellites have also reduced bits on TOD; ground based haven't had to yet
+
+%however as we discuss building ever larger arrays at remote sites, we are starting to be limited: spt example.
+
+%in this work we present digitisation for ground-based cmb polarisation measurements.
+%teaser results
+
+
+%The outline of this paper is as follows. 
+%We present the digisation schemes in \S\ref{sec:dig}, and their performance in \S\ref{sec:results}
+%We summarize our findings in \S\ref{sec:conclusions}. 
 
 \section{Digitisation}
 \label{sec:dig}
 
-overview
-
 \subsection{Problem}
 \label{subsec:problem}
 
-why is it worth considering
+%Data influx + Transmission
+
+The science goals of upcoming CMB experiments naturally lead to a large influx of data. To achieve them longer observations with more detectors are needed. However, the best observations sites for CMB observations are at remote locations: in space and in the Antarctica. Experimetns at these locations depend on satellite transmission The next generation of ground-based experiments, Stage-4, will aim to collect 2 million detector years worth of data. A Stage-4 style experiment will face a data influx of $\sim O(10)Tb/d$. However, the current transmission allocation for the South Pole Telescope (SPT) is at $150Gb/d$. While this will likely see an increase going into the enxt stage of experimetns it will not be able to over the entire observation. In fact we expect that compression rates for transmission must increase by an order of magnitude. Similarly space-based missions aim to increase their detector count by at least an order of magnitude compared to PLANCK. It is questionable whether their telemetry specifications will allow for transmission of the data with PLANCK-style compression. 
+
+%Hardware (other than maybe storage cost for satellites?)
+
+Telemetry drawbacks can be sought to be combated by increasing storage capacity. However, storage space becomes a considerable price point when considering the amount of data to be recorded.
 
 
+%Planning
+
+Beyond these transmission hurdles detailed mission planning is becoming exceedingly expensive. As noted by (S4 science book) a full simulation of TOD over the entire parameter space of detection scenarios for numerous set-ups is the desired way to plan Stage-4 configuration. Similarly space-based missions must carry out a similar analysis to optimise their science out-put. However, given the sheer size of TOD this is not possible. We must turn to different planning strategies or aim to reduce the size of the TOD in order to maximise the productivity of planning and development stages.
+
+Operations on the TOD, such as noise-removal or map-making are a vital part of CMB data analysis. Through the expontentially growing size of TOD CMB data analysis is becoming increasingly expensive.
+
+%why is it worth considering
+
+Extreme Digitisation would tackle the challenges mentioned above by recuding the size of the TOD by an order of magnitude. Together with already exploited lossless compression techniques (such as FLAC) this will directly tackle transmission hurdles. While it needs to be investigated to what extent existing algorithms can be carried over, extreme digitisation has the possiblity of solving planning and analysis problems.
+
+\subsection{Extreme Digitisation}
+\label{subsec:extremedigitisation}
+
+Digitisation is a lossy compression technique. However the induced noise depends on the number of bits used as well as the the digitisation thresholds and output levels chosen. It is possible to calculate the an optimal set of digitisation thresholds and output levels for any number of bits  given the nature of the input signal. This was laid out by Max in 1978.
+
+For 1 bit digitisation we apply the sign function to the TOD 
+
+\[ \hat{x}(t) = \left\{ \begin{array}{lr}
+1, & \text{for } x(t) > 0\\
+-1, & \text{for } x(t) \leq 0
+\end{array} \right. \]
+
+For 2 bit digitisation we apply the optimal digitisation scheme suggested by Max as
+
+\[ \hat{x}(t) = \left\{ \begin{array}{lr}
+1.51 \sigma, & \text{for } x(t) \geq 0.9816 \sigma\\
+0.4528 \sigma, & \text{for } 0 \leq x(t) < 0.9816 \sigma\\
+-0.4528 \sigma, & \text{for } 0.9816 \sigma \leq x(t) < 0\\
+-1.51 \sigma, & \text{for } 0.9816 \sigma < x(t)\\
+\end{array} \right. \]
+
+Finally the optimal 3 bit digitisation scheme is 
+
+\[ \hat{x}(t) = \left\{ \begin{array}{lr}
+2.152 \sigma, & \text{for } x(t) \geq 1.748 \sigma\\
+1.344 \sigma, & \text{for } 1.05 \sigma \leq x(t) < 1.748 \sigma\\
+0.756 \sigma, & \text{for } 0.501 \sigma \leq x(t) < 1.05 \sigma\\
+0.245 \sigma, & \text{for } 0 \leq x(t) < 0.501 \sigma\\
+-0.245 \sigma, & \text{for } 0.501 \sigma \leq x(t) < 0\\
+-0.756 \sigma, & \text{for } 1.05 \sigma \leq x(t) < 0.501 \sigma\\
+-1.344 \sigma, & \text{for } 1.748 \sigma \leq x(t) < 1.05 \sigma\\
+-2.152 \sigma, & \text{for } 1.748 \sigma < x(t)\\
+\end{array} \right. \]
+
+% Theoretical lvls for gaussian white noise
 
 \subsection{Methods}
 \label{subsec:method}
 
-\begin{figure*}[htb]\centering
-\includegraphics[width=0.9\textwidth,clip,trim={1.5cm 12.5cm 5cm 3.8cm}]{pretty.pdf}
-  \caption[Current ]{
-  Current 
-           \label{fig:ig}
-  }
-\end{figure*}
+Template maps:
+
+To investigate the performance of the aforementioned digitisation schemes we simulate many scans over CMB template maps at the timstream level. We begin by creating said template maps by creating a realisation of one $I, Q, U$ map, for which we use the power spectrum provieded by the Planck collaboration XXX. The underlying cosmological parameters are summarised in table \ref{tab:inputcosparams}.
+
+Scan strategy:
+
+These template maps are formulated in the Healpix framework. We then proceed to simulate constant elevation scans (CES) over a square patch of sky using a single detector. The scan speed is tweaked to match a desired number of hits-per-pixel. We allow ourselves to repeat the entire scan 100 times slightly offset in RA and DEC each time, so that we may hit all pixels roughly uniformly. We assume that the noise is purely gaussian white noise. The simulation parameters are summarised in table \ref{tab:modelparams}.
+
+Noise addition and digitisation:
+
+While performing each CES the appropriate pixels that are being targeted are determined. The corresponding values from the template maps are then accessed and added to realisations of the detector noise of appropriate length. The constructed timestream for each channels is then compressed in 4 different ways: averaging of the timestream, respecting each datapoint as a 64bit floating point number and applying the introduced digitisation schemes before averaging the timestream, again withing a 64bit floating point framework. Through this procedure we slowly build up 4 different maps: one map that corresponds to a normal scan over the CMB and 3 maps that reconstruct the observed path from extremely reduced time-ordered data.
+
+Compression:
+
+To obtain maps from the digitised time-stream we simply use our knowledge of the scan strategy to recognise what pixel each recorded point hits. All hits of a pixel are then simply averaged to obtain the pixel value.
 
 
 
+\begin{table}[tbh]
+\begin{center}
+\caption{\label{tab:inputcosparams} Input Cosmological Parameters}
+\small
+\begin{tabular}{l | c c c }
+$\Omega$ & XX&XX&$r$\\
+\hline
+
+\end{tabular}
+\tablecomments{ 
+comments
+} \normalsize
+\end{center}
+\end{table}
+
+\begin{table}[tbh]
+\begin{center}
+\caption{\label{tab:modelparams} Model Parameters}
+\small
+\begin{tabular}{c c c c c}
+$\mathrm{NSIDE}$ & $f_{readout}$ & $f_{sky}$ & $\sigma^{\mathrm{T}}_{detector}$ & $\sigma^{\mathrm{Pol}}_{detector}$\\
+\hline
+$4096$ & $200\mathrm{Hz}$ & $\sim 0.014$ & $500\mathrm{K}\sqrt{\mathrm{s}}$ & $\sqrt{2}\times500\mathrm{K}\sqrt{\mathrm{s}}$\\
+
+\end{tabular}
+\tablecomments{ 
+comments
+} \normalsize
+\end{center}
+\end{table}
+
+
+
+%\begin{figure*}[htb]\centering
+%\includegraphics[width=0.9\textwidth,clip,trim={1.5cm 12.5cm 5cm 3.8cm}]{pretty.pdf}
+%  \caption[Current ]{
+%  Current 
+%           \label{fig:ig}
+%  }
+%\end{figure*}
 
 
 
 \section{Results}
 \label{sec:results}
+
+Get power spectra
+
+Analysis procedure
+
+Analysis results: Nbits to map noise
+
+Analysis results: Nhits per pixel to map noise
+
+Analysis result: Noise disappears in cross-spectra -> actually cannot check this in current framework.
+
+Any other results that are outstanding
+
+? Analysis result: To uncertainty in cosmological parameters?
+
+This is why it works well: low S/N many hits per pixel, jumps in CMB noise level are order of magnitude.
+
 
 \begin{table}[tbh]
 \begin{center}
@@ -166,6 +293,15 @@ All forecasts also allow for beam and calibration uncertainties as noted in the 
 
 \section{Conclusions}
 \label{sec:conclusions}
+
+In this work we have demonstrated the power of digitising CMB TOD from 64-bit down to few-bits. The additional noise induced through this step was at the percent-level for chosen optimal digitisation schemes for temperature and polarisation observations.
+
+The motivation behind employing extreme digitisation is the reduction of TOD by an order of magnitude. This primarily addresses challenges in data transmission that will face upcoming CMB experiments at remote locations. Benefits in planning and analysis seem feasible.
+
+Future work on investigating this compression technique must aim to understand the nature of the induced noise better. For this the performance of cluster-finding algorithms is interesting.
+
+While the X added noise is already impressive it should be laid out how this changes when moving to a more realistic noise profile.
+
 \acknowledgments
 
 We thank the \changed{referee as well as} Srinivasan Raghunathan and Federico Bianchini for valuable feedback on the manuscript. 
