@@ -65,7 +65,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Constructing Cosmic Microwave Background Power Spectra from Few Bit Timestreams}
+\title{Cosmic Microwave Background Power Spectra from Few Bit Timestreams}
 \author{L.~Balkenhol\altaffilmark{\Melbourne} and C.~L.~Reichardt\altaffilmark{\Melbourne}}
 \altaffiltext{\Melbourne}{School of Physics, University of Melbourne, Parkville, VIC 3010, Australia}
 \email{christian.reichardt@unimelb.edu.au}
@@ -199,25 +199,17 @@ Finally the optimal 3 bit digitisation is described by the eight-level function
 \subsection{Methods}
 \label{subsec:method}
 
-Summary:
+To investigate the performance of the aforementioned digitisation schemes we simulate many scans over CMB template maps at the timestream level. Each scan is performed by a single detector. We obtain maps that use 64bit TOD and maps that have undergone 1, 2 and 3 bit digitisation at the timestream level. We calculate the temperature and polarisation power spectra of each map and determine the additional noise induced through the extreme digitisation process.
 
-To investigate the performance of the aforementioned digitisation schemes we simulate many scans over CMB template maps at the timestream level, where we add detector noise, for which we use gaussian white noise . We obtain maps that use 64bit TOD and maps that have undergone 1, 2 and 3 bit digitisatino at the timestream level. We obtain the $TT, EE, BB, TE$ powerspectra of each map. Through comparison we then determine the additional noise induced through the extreme digitisation process.
+The $I, Q, U$ template maps used were created through healpy's synfast. As the input power spectra we use the results by Placnk 2015. The underlying cosmological parameters are summarised in table \ref{tab:inputcosparams}.
 
-Template maps:
+We simulate observing a $\sim 600$ \sqdeg patch of the sky. To do so we perform constant elevation scans (CES) over the observation region. We repeat the observation strategy $100$ times with a slight offset in RA and DEC each time, such that all pixels within the path are hit approximately uniformly. 
 
-The $I, Q, U$ template maps used were created through healpy's synfast. We rely on the power spectrum provieded by the Planck collaboration XXX. The underlying cosmological parameters are summarised in table \ref{tab:inputcosparams}.
+While performing each CES the appropriate pixels that are being targeted are determined. The corresponding values from the template maps are then accessed and added to realisations of the detector noise of appropriate length. We assume the detector noise to be gaussian white noise.
 
-Scan strategy:
+The constructed timestreams for $I$, $Q$ and $U$ are then compressed in 4 different ways: averaging of the timestream, representing each datapoint as a 64bit floating point number and applying the three introduced digitisation schemes before averaging the timestream. The simulation parameters are summarised in table \ref{tab:modelparams}. Through this procedure we slowly build up 12 different maps: three maps that corresponds to a normal scan over the polarised CMB and 9 maps that reconstruct the observed patch from an extremely compressed time-ordered data. Additionally we retain the hitmap.
 
-We simulate observing a $\sim 600$ \sqdeg path of the sky. To do so we perform constant elevation scans over the observation region. We repeat the observation strategy $100$ times with a slight offset in RA and DEC each time, such that all pixels within the path are hit roughly uniformly. The simulation parameters are summarised in table \ref{tab:modelparams}.
-
-Noise addition and digitisation:
-
-While performing each CES the appropriate pixels that are being targeted are determined. The corresponding values from the template maps are then accessed and added to realisations of the detector noise of appropriate length. The constructed timestreams for $I$, $Q$ and $U$ are then compressed in 4 different ways: averaging of the timestream, representing each datapoint as a 64bit floating point number and applying the three introduced digitisation schemes before averaging the timestream.
-
-Compression:
-
-We average all datapoints that lie within one pixel for each observation scheme and each channel. Through this procedure we slowly build up 12 different maps: three maps that corresponds to a normal scan over the polarised CMB and 9 maps that reconstruct the observed patch from an extremely compressed time-ordered data. Additionally we keep hold of the hitmap.
+The simulation described above was implemented in Python 2.7. It has considerable computational requirements if we want to reach up to $\sim 10^8$ hits per pixel. To carry out this simulation we make use of parallelisation and the computing power provided by NERSC.
 
 \begin{table}[tbh]
 \begin{center}
@@ -252,47 +244,91 @@ Parameters used in the simulated sky strategy. The RA speed is tweaked to match 
 
 
 
-%\begin{figure*}[htb]\centering
-%\includegraphics[width=0.9\textwidth,clip,trim={1.5cm 12.5cm 5cm 3.8cm}]{pretty.pdf}
-%  \caption[Current ]{
-%  Current 
-%           \label{fig:ig}
-%  }
-%\end{figure*}
-
-
-
 \section{Results}
 \label{sec:results}
 
-Get power spectra
+\subsection{Analysis}
+\label{subsec:analysis}
 
-Analysis procedure
+We use PolSpice to compute the $TT, EE, BB$ power spectra of the obtained maps. When doing so we apodise the observed skypatch using a cosine mask to minimise cut sky effects on the spectra. Please see \ref{tab:polspiceparams} for an overview of the parameters used in this process.
 
-Analysis results: Nbits to map noise
+\begin{table}[tbh]
+\begin{center}
+\caption{\label{tab:polspiceparams} PolSpice Parameters}
+\small
+\begin{tabular}{c c c c}
+weightfile & apodizesigma & apodizetype & polarization \\
+\hline
+cosine mask & $\sqrt{600}/2$ & 1 & YES \\
 
-Analysis results: Nhits per pixel to map noise
+\end{tabular}
+\tablecomments{ 
+Parameters used when calling PolSpice to calculate the power spectra. Remaining parameters have been left at their default value.
+} \normalsize
+\end{center}
+\end{table}
 
-Analysis result: Noise disappears in cross-spectra -> actually cannot check this in current framework.
+The obtained power spectra originating from digitised time streams are normalised against the power spectra that use the full time stream data. We use results that originate from $\sim 10^8hpp$ maps. We separately normalise the TT, EE and BB spectra. The normalisation constant obtained from this calculation are then applied to all lower hit per pixel runs.
 
-Any other results that are outstanding
+We restrict ourselves to windows in multipole space where we trust that the spectra are within appropriate multipole moment range given the patch size and are signal dominated. We therefore place a lower limit on the normalisation window for each channel from
 
-? Analysis result: To uncertainty in cosmological parameters?
+\[ l = \frac{2}{\pi} \frac{(180^\circ )^2}{600 sqdeg} \approx 35 \]
 
-This is why it works well: low S/N many hits per pixel, jumps in CMB noise level are order of magnitude.
+where we have rounded up to the next highest integer. We find the upper bound on the normalisation window by demanding that
 
+\[ \frac{C_l^{S}}{C_l^{N}} \geq 10 \]
+
+\subsection{Additional Noise}
+\label{subsec:additionalnoise}
+
+To determine how much the quality of the power spectra suffers due to the digitisation we would like to compare the map noise levels. We would like to put this value into context with the map noise level induced through the detector noise. We therefore formulate
+
+\[ \frac{\Delta \sigma}{\sigma} = \frac{\sigma_{MAP}^{D}-\sigma_{MAP}^{SN}}{\sigma_{MAP}^{SN}} \]
+
+where $\sigma_{MAP}^{SN}$ is the map noise level of the full power spectra (signal plus noise) and $\sigma_{MAP}^{D}$ is the map noise level obtained from the power spectra originating from extremely digitised TOD. We assume that the digitisation process results in adding some constant  to the powerspectrum, i.e.
+
+\[ C_l^D = C_l^N + C_l^X \]
+
+in the limit where we are dominated by noise. Here $C_l^D$ is the power spectrum originating from a digitised timestream, $C_l^N$ is the detector noise level and $C_l^X$ the additional noise induced. We may now progress with
+
+\[\frac{\Delta \sigma}{\sigma} = \sqrt{\frac{C_l^D}{C_l^{N}}} - 1  = \sqrt{\frac{C_l^N + C_l^X}{C_l^{N}}} - 1 = \sqrt{1 + \frac{C_l^X}{C_l^{N}}} - 1  \]
+
+Before analysing $C_l^X/C_l^N$ we rebin the power spectra to $\Delta l = 123$. This guarantees that the points in the noise tail are independent of one another, allowing us to extract an uncertainty for the above quantity.
+
+The results for the 1, 2 and 3 bit digitisation schmes for the TT, EE and BB power spectra are summarised in \ref{fig:extranoise}. We would like to points out three key results. Firstly, 3 Bit digitisation performs the best, followed by 2 Bit and finally 1 Bit digitisation. This is what we expect, given that with each additional bit we may retain more information. Secondly, for a fixed detector noise level, the additional percentage to the map noise level due to digitisation is independent of the number of hits per pixel. This is a valuable result, as it means that there is not a certain point at which surveys start becoming viable for this compression techniques, but they rather perform equally well throughout the range of hits per pixel tested. Lastly, the added noise levels are astonishingly low.
+
+%Any other results that are outstanding
+
+%? Analysis result: To uncertainty in cosmological parameters?
+
+We present the average additional percentage to the map noise level through digitisation in \ref{tab:noise}. These results are obtained by calculating the weighted average across all hits per pixel for a given digitisation scheme and channel. We note that an optimal 3 bit digitisation scheme adds as little as $\sim2\%$ to the map noise level.
+
+Given that advances in CMB observations happen in order magnitude jumps between generations of experiments this is a negligible noise addition, considering that it reduces the TOD by an order of magnitude.
+
+Extreme digitisation is a viable lossy compression technique when dealing with large low signal to noise, slowly varying datasets. Within this limit digitisation relies on the noise to push the small signal towards the correct side of the locally stationary signal. A low signal to noise ratio prevents us from a signal saturating the digitisation levels. For large datasets are needed to provide many samplings of each locally stationary signal. An increase in bit number does not necessarily improve the recovery of the mean, but rather advances narrowing down on its uncertainty, by improving the nulling out of the noise. Improving the number of samples in a dataset improves the finding of the mean, as it allows for more correctly pushed digitised points to be considered.
+
+\begin{figure*}[htb]\centering
+\includegraphics[width=0.9\textwidth,clip]{Plots/addednoise.png}
+  \caption[Current ]{
+  Addition to the map noise level due to digitisation. 
+           \label{fig:extranoise}
+  }
+\end{figure*}
 
 \begin{table}[tbh]
 \begin{center}
 \caption{\label{tab:noise} Noise levels}
 \small
 \begin{tabular}{l | c c c }
-Model   & XX&XX&$r$\\
-\hline
+ Channel & 1 Bit & 2 Bit & 3 Bit\\
+ \hline
+ TT & & & \\
+ EE & & & \\
+ BB & & & \\
 
 \end{tabular}
 \tablecomments{ 
-go go
+Added percentage to the map noise level due to digitisation.
 } \normalsize
 \end{center}
 \end{table}
@@ -331,7 +367,7 @@ The motivation behind employing extreme digitisation is the reduction of TOD by 
 
 Future work on investigating this compression technique must aim to understand the nature of the induced noise better. For this the performance of cluster-finding algorithms is interesting.
 
-While the X added noise is already impressive it should be laid out how this changes when moving to a more realistic noise profile.
+It should be laid out how this changes when moving to a more realistic noise profile. We do not expect this to alter the practicality of our results - even if a moderate change in the noise profile doubles the additional percentage to the map noise level extreme digitisation is still practical. Ideas on how to deal with 1/f noise, e.g. chunking of the data before applying extreme digitisation have already been investigated by Planck. These thoughts should be considered when designing the compression schemes of future space-based CMB missions, which will be unable to recover their full data with latency, but rather fully rely on the transmitted data.
 
 \acknowledgments % thank patrick for discussion/starting point? Andrew?
 
