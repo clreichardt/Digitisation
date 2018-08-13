@@ -13,7 +13,7 @@
 %\usepackage{natbib}
 \bibliographystyle{fapj}
 %\usepackage{graphicx}
-%\usepackage{multirow}
+\usepackage{multirow}
 \usepackage{soul}
 
 %\newcommand{\jcap}{JCAP}
@@ -245,14 +245,19 @@ Cosmological parameters used to create the template maps. Taken from Planck 2015
 \begin{center}
 \caption{\label{tab:modelparams} Assumed Survey Parameters}
 \small
-\begin{tabular}{l c c c c}
-$\mathrm{NSIDE}$ & $f_{\mathrm{readout}} [\mathrm{Hz}]$ & $f_{{\mathrm{sky}}}$ & $\sigma^{\mathrm{T}}_{\mathrm{det}} [\mathrm{\mu K \sqrt{s}}]$ & $\sigma^{\mathrm{Pol}}_{\mathrm{det}} [\mathrm{\mu K \sqrt{s}}]$\\
+\begin{tabular}{l | c}
+Parameter & Value\\
 \hline
-$4096$ & $200$ & $\sim 0.014$ & $500$ & $\sqrt{2}\times500$\\
-
+$\mathrm{NSIDE}$ &$4096$\\
+$f_{\mathrm{readout}} [\mathrm{Hz}]$ &$200$\\
+$f_{{\mathrm{sky}}}$ & $\sim 0.014$\\
+$\sigma^{\mathrm{T}}_{\mathrm{det}} [\mathrm{\mu K \sqrt{s}}]$ &$500$\\
+$\sigma^{\mathrm{Pol}}_{\mathrm{det}} [\mathrm{\mu K \sqrt{s}}]$ & $\sqrt{2}\times500$\\
+\multirow{2}{*}{$\mathrm{hpp}$} & $\left(1, 10, 100 \right) \times 800$\\
+& $\left( 1, 10, 100 \right) \times 1024000$ \\
 \end{tabular}
 \tablecomments{ 
-Parameters used in the simulated observation. The RA speed is tweaked to match the desired hpp.
+Parameters used in the simulated observation. The RA speed is adjusted to match the desired hpp.
 } \normalsize
 \end{center}
 \end{table}
@@ -293,7 +298,31 @@ where we have rounded up to the next largest integer. We find the upper bound on
 
 where $C_l^{\mathrm{S}}$ is the power spectrum of the input template maps and $C_l^{\mathrm{N}}$ the detector noise level.
 
-we close the normalisation window the first instance the above condition is met. The normalisation constants for each digitisation scheme and channel obtained through this way are then applied to all lower hpp simulations.
+we close the normalisation window the first instance the above condition is met. The normalisation constants for each digitisation scheme and channel obtained through this way are then applied to all lower hpp simulations. A sample of the obtained power spectra are shown in figures \ref{fig:ttzoom}, \ref{fig:eezoom}, and \ref{fig:bbzoom}.
+
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/ttzoom.png}
+  \caption[Current ]{
+  $\mathrm{TT}$ power spectrum reconstructed from a $\sim 10^8\mathrm{hpp}$ map.
+           \label{fig:ttzoom}
+  }
+\end{figure}
+
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/eezoom.png}
+  \caption[Current ]{
+  $\mathrm{EE}$ power spectrum reconstructed from a $\sim 10^8\mathrm{hpp}$ map.
+\label{fig:eezoom}
+}
+\end{figure}
+
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/bbzoom.png}
+  \caption[Current ]{
+  $\mathrm{BB}$ power spectrum reconstructed from a $\sim 10^8\mathrm{hpp}$ map.
+\label{fig:bbzoom}
+}
+\end{figure}
 
 \subsection{Additional Noise}
 \label{subsec:additionalnoise}
@@ -316,49 +345,71 @@ The value of $l$ at which we can safely assume to be noise dominated and apply t
 
 \[ \frac{C_l^{\mathrm{N}}}{C_l^{\mathrm{S}}} \geq 10 \]
 
-Before analysing $C_l^X/C_l^N$ we rebin the power spectra to $\Delta l = 123$. This guarantees that the points in the noise tail are independent of one another, allowing us to extract an uncertainty for the above quantity.
+Before analysing $C_l^X/C_l^N$ we rebin the power spectra to $\Delta l = 123$. This guarantees that the points in the noise tail are independent of one another, allowing us to extract an uncertainty for the above quantity. Plots for $C_l^X/C_l^N$ are shown in figures \ref{fig:clxclntt}, \ref{fig:clxclnee}, and \ref{fig:clxclnbb} for $TT$, $EE$, and $BB$ respectively.
 
-%plot these X/N ?
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/ttratio.png}
+  \caption[Current ]{
+  Calculated ratio of $C_l^X/C_l^N$ of the rebinned $\mathrm{TT}$ power spectrum. The vertical black line indicates from which point onwards data is used in calculating the equivalent noise level.
+           \label{fig:clxclntt}
+  }
+\end{figure}
 
-The results for the 1, 2 and 3 bit digitisation schemes are summarised in figure \ref{fig:extranoise}. We would like to point out three key results. Firstly, 3 Bit digitisation performs the best, followed by 2 Bit and finally 1 Bit digitisation. This is what we expect, given that with each additional bit we retain more information. Secondly, for a fixed detector noise level, the additional percentage to the map noise level due to digitisation is independent of the number of hpp. The added noise therefore scales in the same fashion as the map noise level with the number of hpp, given a fixed detector noise level. Lastly, the added noise levels are astonishingly low. Keeping in mind that CMB detector sensitivity improves in steps of order of magnitude every few years adding an extra percent-level noise term does not deteriorate the results appreciably. This is impressive, given that the use of an optimal 3 bit digitisation scheme will save approximately an order of magnitude in TOD volume.
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/eeratio.png}
+  \caption[Current ]{
+  Calculated ratio of $C_l^X/C_l^N$ of the rebinned $\mathrm{EE}$ power spectrum.
+\label{fig:clxclnee}
+}
+\end{figure}
+
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/bbratio.png}
+  \caption[Current ]{
+  Calculated ratio of $C_l^X/C_l^N$ of the rebinned $\mathrm{BB}$ power spectrum.
+\label{fig:clxclnbb}
+}
+\end{figure}
+
+
+The deduced additional noise for 1, 2 and 3 bit digitisation schemes are shown with respect to the hits per pixel in the maps in figure \ref{fig:extranoise}. We would like to point out three key results. Firstly, 3 Bit digitisation performs the best, followed by 2 Bit and finally 1 Bit digitisation. This is what we expect, given that with each additional bit we retain more information. Secondly, for a fixed detector noise level, the additional percentage to the map noise level due to digitisation is independent of the number of hpp. The added noise therefore scales in the same fashion as the map noise level with the number of hpp, given a fixed detector noise level. Lastly, the added noise levels are astonishingly low. Keeping in mind that CMB detector sensitivity improves in steps of order of magnitude every few years adding an extra percent-level noise term does not deteriorate the results appreciably. This is impressive, given that the use of an optimal 3 bit digitisation scheme will save approximately an order of magnitude in TOD volume.
+
+\begin{figure}[htb]\centering
+\includegraphics[width=0.5\textwidth,clip]{Plots/addednoise.png}
+  \caption[Current ]{
+  Addition to the map noise level due to digitisation. 
+           \label{fig:extranoise}
+  }
+\end{figure}
 
 Extreme digitisation is a viable lossy compression technique when dealing with low signal to noise, large datasets with a signal that is slowly varying with respect to the sampling rate. Under these conditions we have a locally flat, low signal, on top of which we add many noise realisations. In the limit of many samples these allow us to reconstruct the signal well. Furthermore a small signal will prevent saturation of the output, i.e. the inability of the digitised output to communicate any information where in the range $\infty$ to $x_N$ the input signal lies.
 
 %Extreme digitisation is a viable lossy compression technique when dealing with large volume, low signal to noise, slowly varying datasets. Making these assumptions the signal is small and constant for a considerable number of datapoints. For such an interval many samplings of the signal plus noise result in producing appropriate numbers in each output bin. The addition of more bits helps by classifying the size of the noise more accurately and hence approaching an improved estimate for the value of the signal faster. It is necessary to remain in the low signal to noise regime, as otherwise a dominant signal would saturate the digitisation scheme and for a given scheme only values in the range $\pm |N_{\mathrm{hits}}y_N|$ can be represented, given that we have $N_{\mathrm{hits}}$ datapoints. We must demand the data to be slowly varying such that many datapoints can be used to reconstruct a single significant step of the input signal. Finally a large data volume is clearly favourable for the reasons illustrated above: it allows for repeated sampling and therefore more accurate reconstruction of the weak signal.
 
-
-\begin{figure*}[htb]\centering
-\includegraphics[width=0.9\textwidth,clip]{Plots/addednoise.png}
-  \caption[Current ]{
-  Addition to the map noise level due to digitisation. 
-           \label{fig:extranoise}
-  }
-\end{figure*}
-
-\begin{table*}[tbh]
-\begin{center}
-\caption{\label{tab:experiments} Assumed survey parameters}
-\small
-\begin{tabular}{l || c c c c c }
-Experiment & Sky coverage & Polarized Noise level  & 1/$f$ knee & Beam FWHM \\
-& &($\mu$K-arcmin)&&(arcmin.)\\
-\hline
-\tiny \\ \small
-CMB Stage III & & & & \\
-~~~~~SPT-3G & 6\% & 3.0 & 200 & 1.2 \\
-~~~~~Simons Array & 36\% & 9.5 & 200 & 3.5 \\ 
-\tiny \\ \small
+%\begin{table*}[tbh]
+%\begin{center}
+%\caption{\label{tab:experiments} Assumed survey parameters}
+%\small
+%\begin{tabular}{l || c c c c c }
+%Experiment & Sky coverage & Polarized Noise level  & 1/$f$ knee & Beam FWHM \\
+%& &($\mu$K-arcmin)&&(arcmin.)\\
 %\hline
-CMB Stage IV & 55\% & 1.3 & 100 & 4.0 \\
-\end{tabular}
-\tablecomments{ 
-Key numbers about the planned stage III and IV experiments. 
-The sky coverage percentages are after galactic cuts. 
-Unless otherwise noted,  the Fisher matrix forecasts in this work use these numbers. 
-All forecasts also allow for beam and calibration uncertainties as noted in the text. 
-} \normalsize
-\end{center}
-\end{table*}
+%\tiny \\ \small
+%CMB Stage III & & & & \\
+%~~~~~SPT-3G & 6\% & 3.0 & 200 & 1.2 \\
+%~~~~~Simons Array & 36\% & 9.5 & 200 & 3.5 \\ 
+%\tiny \\ \small
+%\hline
+%CMB Stage IV & 55\% & 1.3 & 100 & 4.0 \\
+%\end{tabular}
+%\tablecomments{ 
+%Key numbers about the planned stage III and IV experiments. 
+%The sky coverage percentages are after galactic cuts. 
+%Unless otherwise noted,  the Fisher matrix forecasts in this work use these numbers. 
+%All forecasts also allow for beam and calibration uncertainties as noted in the text. 
+%} \normalsize
+%\end{center}
+%\end{table*}
 
 \section{Conclusions}
 \label{sec:conclusions}
