@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  13 AUG 2018 15:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  14 AUG 2018 13:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -241,6 +241,26 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
 ))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip61
+\subfigcapskip=\skip62
+\subfigcaptopadj=\dimen117
+\subfigbottomskip=\skip63
+\subfigcapmargin=\dimen118
+\subfiglabelskip=\skip64
+\c@subfigure=\count110
+\c@lofdepth=\count111
+\c@subtable=\count112
+\c@lotdepth=\count113
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip65
+\subfig@bottom=\skip66
+)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -297,14 +317,14 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen117
-\Hy@linkcounter=\count110
-\Hy@pagecounter=\count111
+\@linkdim=\dimen119
+\Hy@linkcounter=\count114
+\Hy@pagecounter=\count115
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count112
+\Hy@SavedSpaceFactor=\count116
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -328,12 +348,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
 LaTeX Info: Redefining \href on input line 4952.
-\c@Hy@tempcnt=\count113
+\c@Hy@tempcnt=\count117
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen118
-\Fld@menulength=\count114
-\Field@Width=\dimen119
-\Fld@charsize=\dimen120
+\XeTeXLinkMargin=\dimen120
+\Fld@menulength=\count118
+\Field@Width=\dimen121
+\Fld@charsize=\dimen122
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -343,21 +363,21 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count115
-\c@Item=\count116
-\c@Hfootnote=\count117
+\Hy@abspage=\count119
+\c@Item=\count120
+\c@Hfootnote=\count121
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count118
-\c@bookmark@seq@number=\count119
-\Hy@SectionHShift=\skip61
+\Fld@listcount=\count122
+\c@bookmark@seq@number=\count123
+\Hy@SectionHShift=\skip67
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/multirow/multirow.sty
-\bigstrutjot=\dimen121
+\bigstrutjot=\dimen123
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/soul/soul.sty
 Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
@@ -366,10 +386,10 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@cmds=\toks26
 \SOUL@buffer=\toks27
 \SOUL@token=\toks28
-\SOUL@spaceskip=\skip62
-\SOUL@ttwidth=\dimen122
-\SOUL@uldp=\dimen123
-\SOUL@ulht=\dimen124
+\SOUL@spaceskip=\skip68
+\SOUL@ttwidth=\dimen124
+\SOUL@uldp=\dimen125
+\SOUL@ulht=\dimen126
 )
 \@input{number_list.aux}
 \openout2 = `number_list.aux'.
@@ -404,16 +424,16 @@ LaTeX Font Info:    ... okay on input line 66.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen125
+\scratchcounter=\count124
+\scratchdimen=\dimen127
 \scratchbox=\box45
-\nofMPsegments=\count121
-\nofMParguments=\count122
+\nofMPsegments=\count125
+\nofMParguments=\count126
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen126
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen128
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
 \everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -439,7 +459,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count126
+\c@section@level=\count130
 )
 LaTeX Info: Redefining \ref on input line 66.
 LaTeX Info: Redefining \pageref on input line 66.
@@ -478,7 +498,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 89.
  [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (12.21832pt too wide) in paragraph at lines 279--287
+Overfull \hbox (8.05171pt too wide) in paragraph at lines 279--287
  []$ 
  []
 
@@ -492,100 +512,113 @@ LaTeX Warning: A float is stuck (cannot be placed) on input line 296.
 
 Class revtex4-1 Warning: Deferred float stuck during \clearpage processing.
 
-<Plots/ttzoom.png, id=102, 722.7pt x 578.16pt>
+<Plots/ttzoom.png, id=100, 722.7pt x 578.16pt>
 File: Plots/ttzoom.png Graphic file (type png)
  <use Plots/ttzoom.png>
 Package pdftex.def Info: Plots/ttzoom.png used on input line 304.
 (pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 304--305
- [][] 
- []
-
-<Plots/eezoom.png, id=105, 722.7pt x 578.16pt>
+<Plots/eezoom.png, id=103, 722.7pt x 578.16pt>
 File: Plots/eezoom.png Graphic file (type png)
  <use Plots/eezoom.png>
-Package pdftex.def Info: Plots/eezoom.png used on input line 312.
+Package pdftex.def Info: Plots/eezoom.png used on input line 305.
 (pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 312--313
+<Plots/bbzoom.png, id=105, 722.7pt x 578.16pt>
+File: Plots/bbzoom.png Graphic file (type png)
+ <use Plots/bbzoom.png>
+Package pdftex.def Info: Plots/bbzoom.png used on input line 306.
+(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
+
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 304--307
  [][] 
  []
 
-<Plots/bbzoom.png, id=107, 722.7pt x 578.16pt>
-File: Plots/bbzoom.png Graphic file (type png)
- <use Plots/bbzoom.png>
-Package pdftex.def Info: Plots/bbzoom.png used on input line 320.
-(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 320--321
- [][] 
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 304--307
+ [] 
+ []
+
+
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 304--307
+ [] 
  []
 
 [4 <./Plots/ttzoom.png> <./Plots/eezoom.png> <./Plots/bbzoom.png>]
-<Plots/ttratio.png, id=128, 722.7pt x 578.16pt>
+<Plots/ttratio.png, id=121, 722.7pt x 578.16pt>
 File: Plots/ttratio.png Graphic file (type png)
  <use Plots/ttratio.png>
-Package pdftex.def Info: Plots/ttratio.png used on input line 351.
+Package pdftex.def Info: Plots/ttratio.png used on input line 338.
+(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
+
+<Plots/eeratio.png, id=123, 722.7pt x 578.16pt>
+File: Plots/eeratio.png Graphic file (type png)
+ <use Plots/eeratio.png>
+Package pdftex.def Info: Plots/eeratio.png used on input line 339.
+(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
+
+<Plots/bbratio.png, id=125, 722.7pt x 578.16pt>
+File: Plots/bbratio.png Graphic file (type png)
+ <use Plots/bbratio.png>
+Package pdftex.def Info: Plots/bbratio.png used on input line 340.
+(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
+
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 338--341
+ [][] 
+ []
+
+
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 338--341
+ [] 
+ []
+
+
+Overfull \hbox (11.29219pt too wide) in paragraph at lines 338--341
+ [] 
+ []
+
+<Plots/addednoise.png, id=128, 722.7pt x 578.16pt>
+File: Plots/addednoise.png Graphic file (type png)
+ <use Plots/addednoise.png>
+Package pdftex.def Info: Plots/addednoise.png used on input line 351.
 (pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
 Overfull \hbox (11.29219pt too wide) in paragraph at lines 351--352
  [][] 
  []
 
-<Plots/eeratio.png, id=130, 722.7pt x 578.16pt>
-File: Plots/eeratio.png Graphic file (type png)
- <use Plots/eeratio.png>
-Package pdftex.def Info: Plots/eeratio.png used on input line 359.
-(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
+[5 <./Plots/ttratio.png> <./Plots/eeratio.png> <./Plots/bbratio.png>]
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 359--360
- [][] 
- []
+LaTeX Warning: A float is stuck (cannot be placed) on input line 400.
 
-<Plots/bbratio.png, id=132, 722.7pt x 578.16pt>
-File: Plots/bbratio.png Graphic file (type png)
- <use Plots/bbratio.png>
-Package pdftex.def Info: Plots/bbratio.png used on input line 367.
-(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 367--368
- [][] 
- []
+LaTeX Warning: A float is stuck (cannot be placed) on input line 400.
 
-<Plots/addednoise.png, id=135, 722.7pt x 578.16pt>
-File: Plots/addednoise.png Graphic file (type png)
- <use Plots/addednoise.png>
-Package pdftex.def Info: Plots/addednoise.png used on input line 378.
-(pdftex.def)             Requested size: 256.55872pt x 205.24382pt.
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 378--379
- [][] 
- []
+Class revtex4-1 Warning: Deferred float stuck during \clearpage processing.
 
-[5 <./Plots/ttratio.png> <./Plots/eeratio.png> <./Plots/bbratio.png> <./Plots/a
-ddednoise.png>]
-Underfull \hbox (badness 2837) in paragraph at lines 427--431
+
+Underfull \hbox (badness 2837) in paragraph at lines 401--405
 \OT1/cmr/m/n/10 an Aus-tralian Re-search Coun-cil Fu-ture Fel-low-ship
  []
 
 No file digitisation.bbl.
-[6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 436.
+[6 <./Plots/addednoise.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 410.
  (./digitisation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 436.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 436.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 410.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 410.
 Package rerunfilecheck Info: File `digitisation.out' has not changed.
 (rerunfilecheck)             Checksum: F0C2C9E0ED19BEDFC366468C33C6F6F0;557.
  ) 
 Here is how much of TeX's memory you used:
- 8790 strings out of 493089
- 123565 string characters out of 6134841
- 247783 words of memory out of 5000000
- 12124 multiletter control sequences out of 15000+600000
+ 8935 strings out of 493089
+ 125627 string characters out of 6134841
+ 249570 words of memory out of 5000000
+ 12267 multiletter control sequences out of 15000+600000
  12534 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,38p,1211b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,38p,1210b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
@@ -603,14 +636,13 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on digitisation.pdf (6 pages, 689203 bytes).
+ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on digitisation.pdf (6 pages, 681280 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 220 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
