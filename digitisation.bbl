@@ -1,0 +1,155 @@
+\begin{thebibliography}{17}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Abazajian} {et~al.}(2016){Abazajian}, {Adshead}, {Ahmed}, {Allen},
+  {Alonso}, {Arnold}, {Baccigalupi}, {Bartlett}, {Battaglia}, {Benson},
+  {Bischoff}, {Borrill}, {Buza}, {Calabrese}, {Caldwell}, {Carlstrom}, {Chang},
+  {Crawford}, {Cyr-Racine}, {De Bernardis}, {de Haan}, {di Serego Alighieri},
+  {Dunkley}, {Dvorkin}, {Errard}, {Fabbian}, {Feeney}, {Ferraro}, {Filippini},
+  {Flauger}, {Fuller}, {Gluscevic}, {Green}, {Grin}, {Grohs}, {Henning},
+  {Hill}, {Hlozek}, {Holder}, {Holzapfel}, {Hu}, {Huffenberger}, {Keskitalo},
+  {Knox}, {Kosowsky}, {Kovac}, {Kovetz}, {Kuo}, {Kusaka}, {Le Jeune}, {Lee},
+  {Lilley}, {Loverde}, {Madhavacheril}, {Mantz}, {Marsh}, {McMahon},
+  {Meerburg}, {Meyers}, {Miller}, {Munoz}, {Nguyen}, {Niemack}, {Peloso},
+  {Peloton}, {Pogosian}, {Pryke}, {Raveri}, {Reichardt}, {Rocha}, {Rotti},
+  {Schaan}, {Schmittfull}, {Scott}, {Sehgal}, {Shandera}, {Sherwin}, {Smith},
+  {Sorbo}, {Starkman}, {Story}, {van Engelen}, {Vieira}, {Watson}, {Whitehorn},
+  \& {Kimmy Wu}}]{s4sciencebook}
+{Abazajian}, K.~N., {et~al.} 2016, ArXiv e-prints, 1610.02743
+
+\bibitem[{{Brown} {et~al.}(2005){Brown}, {Castro}, \& {Taylor}}]{brown2005}
+{Brown}, M.~L., {Castro}, P.~G., \& {Taylor}, A.~N. 2005, \mnras, 360, 1262
+
+\bibitem[{{Clearwater} {et~al.}(2018){Clearwater}, {Melatos}, {Bailes},
+  {Flynn}, \& {Nepal}}]{clearwater2018}
+{Clearwater}, P., {Melatos}, A., {Bailes}, M., {Flynn}, C., \& {Nepal}, S.
+  2018, Submitted for publication.
+
+\bibitem[{{Delabrouille} {et~al.}(2018){Delabrouille}, {de Bernardis},
+  {Bouchet}, {Ach{\'u}carro}, {Ade}, {Allison}, {Arroja}, {Artal}, {Ashdown},
+  {Baccigalupi}, {Ballardini}, {Banday}, {Banerji}, {Barbosa}, {Bartlett},
+  {Bartolo}, {Basak}, {Baselmans}, {Basu}, {Battistelli}, {Battye}, {Baumann},
+  {Beno{\'{\i}}t}, {Bersanelli}, {Bideaud}, {Biesiada}, {Bilicki}, {Bonaldi},
+  {Bonato}, {Borrill}, {Boulanger}, {Brinckmann}, {Brown}, {Bucher},
+  {Burigana}, {Buzzelli}, {Cabass}, {Cai}, {Calvo}, {Caputo}, {Carvalho},
+  {Casas}, {Castellano}, {Catalano}, {Challinor}, {Charles}, {Chluba},
+  {Clements}, {Clesse}, {Colafrancesco}, {Colantoni}, {Contreras},
+  {Coppolecchia}, {Crook}, {D'Alessandro}, {D'Amico}, {da Silva}, {de Avillez},
+  {de Gasperis}, {De Petris}, {de Zotti}, {Danese}, {D{\'e}sert}, {Desjacques},
+  {Di Valentino}, {Dickinson}, {Diego}, {Doyle}, {Durrer}, {Dvorkin},
+  {Eriksen}, {Errard}, {Feeney}, {Fern{\'a}ndez-Cobos}, {Finelli},
+  {Forastieri}, {Franceschet}, {Fuskeland}, {Galli}, {G{\'e}nova-Santos},
+  {Gerbino}, {Giusarma}, {Gomez}, {Gonz{\'a}lez-Nuevo}, {Grandis},
+  {Greenslade}, {Goupy}, {Hagstotz}, {Hanany}, {Handley},
+  {Henrot-Versill{\'e}}, {Hern{\'a}ndez-Monteagudo}, {Hervias-Caimapo},
+  {Hills}, {Hindmarsh}, {Hivon}, {Hoang}, {Hooper}, {Hu}, {Keih{\"a}nen},
+  {Keskitalo}, {Kiiveri}, {Kisner}, {Kitching}, {Kunz}, {Kurki-Suonio},
+  {Lagache}, {Lamagna}, {Lapi}, {Lasenby}, {Lattanzi}, {Le Brun},
+  {Lesgourgues}, {Liguori}, {Lindholm}, {Lizarraga}, {Luzzi},
+  {Mac{\`i}as-P$\${\'e}rez}, {Maffei}, {Mandolesi}, {Martin},
+  {Martinez-Gonzalez}, {Martins}, {Masi}, {Massardi}, {Matarrese}, {Mazzotta},
+  {McCarthy}, {Melchiorri}, {Melin}, {Mennella}, {Mohr}, {Molinari},
+  {Monfardini}, {Montier}, {Natoli}, {Negrello}, {Notari}, {Noviello},
+  {Oppizzi}, {O'Sullivan}, {Pagano}, {Paiella}, {Pajer}, {Paoletti},
+  {Paradiso}, {Partridge}, {Patanchon}, {Patil}, {Perdereau}, {Piacentini},
+  {Piat}, {Pisano}, {Polastri}, {Polenta}, {Pollo}, {Ponthieu}, {Poulin},
+  {Pr{\^e}le}, {Quartin}, {Ravenni}, {Remazeilles}, {Renzi}, {Ringeval},
+  {Roest}, {Roman}, {Roukema}, {Rubi{\~n}o-Martin}, {Salvati}, {Scott},
+  {Serjeant}, {Signorelli}, {Starobinsky}, {Sunyaev}, {Tan}, {Tartari},
+  {Tasinato}, {Toffolatti}, {Tomasi}, {Torrado}, {Tramonte}, {Trappe},
+  {Triqueneaux}, {Tristram}, {Trombetti}, {Tucci}, {Tucker}, {Urrestilla},
+  {V{\"a}liviita}, {Van de Weygaert}, {Van Tent}, {Vennin}, {Verde},
+  {Vermeulen}, {Vielva}, {Vittorio}, {Voisin}, {Wallis}, {Wandelt}, {Wehus},
+  {Weller}, {Young}, \& {Zannoni}}]{core2018}
+{Delabrouille}, J., {et~al.} 2018, \jcap, 4, 014
+
+\bibitem[{{Gaztanaga} {et~al.}(1998){Gaztanaga}, {Barriga}, {Romeo}, {Fosalba},
+  \& {Elizalde}}]{gaztanaga1998}
+{Gaztanaga}, E., {Barriga}, J., {Romeo}, A., {Fosalba}, P., \& {Elizalde}, E.
+  1998, ArXiv Astrophysics e-prints
+
+\bibitem[{{Jenet} \& {Anderson}(1998)}]{jenet1998}
+{Jenet}, F.~A., \& {Anderson}, S.~B. 1998, \pasp, 110, 1467
+
+\bibitem[{{Kogut} {et~al.}(2011){Kogut}, {Fixsen}, {Chuss}, {Dotson}, {Dwek},
+  {Halpern}, {Hinshaw}, {Meyer}, {Moseley}, {Seiffert}, {Spergel}, \&
+  {Wollack}}]{pixie2011}
+{Kogut}, A., {et~al.} 2011, \jcap, 7, 025
+
+\bibitem[{{Kovac} \& {Barkats}(2007)}]{kovac2007}
+{Kovac}, J.~M., \& {Barkats}, D. 2007, ArXiv e-prints, 0707.1075
+
+\bibitem[{{Li} {et~al.}(2017){Li}, {Liu}, {Li}, {Li}, \& {Zhang}}]{li2017}
+{Li}, Y.-P., {Liu}, Y., {Li}, S.-Y., {Li}, H., \& {Zhang}, X. 2017, ArXiv
+  e-prints, 1709.09053
+
+\bibitem[{{Maris} {et~al.}(2003){Maris}, {Maino}, {Burigana}, {Mennella},
+  {Bersanelli}, \& {Pasian}}]{maris2003}
+{Maris}, M., {Maino}, D., {Burigana}, C., {Mennella}, A., {Bersanelli}, M., \&
+  {Pasian}, F. 2003, \memsai, 74, 488
+
+\bibitem[{{Matsumura} {et~al.}(2014){Matsumura}, {Akiba}, {Borrill}, {Chinone},
+  {Dobbs}, {Fuke}, {Ghribi}, {Hasegawa}, {Hattori}, {Hattori}, {Hazumi},
+  {Holzapfel}, {Inoue}, {Ishidoshiro}, {Ishino}, {Ishitsuka}, {Karatsu},
+  {Katayama}, {Kawano}, {Kibayashi}, {Kibe}, {Kimura}, {Kimura}, {Koga},
+  {Kozu}, {Komatsu}, {Lee}, {Matsuhara}, {Mima}, {Mitsuda}, {Mizukami},
+  {Morii}, {Morishima}, {Murayama}, {Nagai}, {Nagata}, {Nakamura}, {Naruse},
+  {Natsume}, {Nishibori}, {Nishino}, {Noda}, {Noguchi}, {Ogawa}, {Oguri},
+  {Ohta}, {Otani}, {Richards}, {Sakai}, {Sato}, {Sato}, {Sekimoto}, {Shimizu},
+  {Shinozaki}, {Sugita}, {Suzuki}, {Suzuki}, {Tajima}, {Takada}, {Takakura},
+  {Takei}, {Tomaru}, {Uzawa}, {Wada}, {Watanabe}, {Yoshida}, {Yamasaki},
+  {Yoshida}, \& {Yotsumoto}}]{litebird2014}
+{Matsumura}, T., {et~al.} 2014, Journal of Low Temperature Physics, 176, 733
+
+\bibitem[{Max(1960)}]{max1960}
+Max, J. 1960, 6, 7
+
+\bibitem[{{Penzias} \& {Wilson}(1965)}]{penzias1965}
+{Penzias}, A.~A., \& {Wilson}, R.~W. 1965, \apj, 142, 1149
+
+\bibitem[{{Planck Collaboration} {et~al.}(2018){Planck Collaboration},
+  {Akrami}, {Arroja}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini},
+  {Banday}, {Barreiro}, {Bartolo}, {Basak}, {Battye}, {Benabed}, {Bernard},
+  {Bersanelli}, {Bielewicz}, {Bock}, {Bond}, {Borrill}, {Bouchet}, {Boulanger},
+  {Bucher}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Carron},
+  {Casaponsa}, {Challinor}, {Chiang}, {Colombo}, {Combet}, {Contreras},
+  {Crill}, {Cuttaia}, {de Bernardis}, {de Zotti}, {Delabrouille}, {Delouis},
+  {D{\'e}sert}, {Di Valentino}, {Dickinson}, {Diego}, {Donzelli}, {Dor{\'e}},
+  {Douspis}, {Ducout}, {Dupac}, {Efstathiou}, {Elsner}, {En{\ss}lin},
+  {Eriksen}, {Falgarone}, {Fantaye}, {Fergusson}, {Fernandez-Cobos}, {Finelli},
+  {Forastieri}, {Frailis}, {Franceschi}, {Frolov}, {Galeotta}, {Galli},
+  {Ganga}, {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Gonz{\'a}lez-Nuevo},
+  {G{\'o}rski}, {Gratton}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley},
+  {Hansen}, {Helou}, {Herranz}, {Hivon}, {Huang}, {Jaffe}, {Jones}, {Karakci},
+  {Keih{\"a}nen}, {Keskitalo}, {Kiiveri}, {Kim}, {Kisner}, {Knox},
+  {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lagache}, {Lamarre}, {Langer},
+  {Lasenby}, {Lattanzi}, {Lawrence}, {Le Jeune}, {Leahy}, {Lesgourgues},
+  {Levrier}, {Lewis}, {Liguori}, {Lilje}, {Lilley}, {Lindholm},
+  {L{\'o}pez-Caniego}, {Lubin}, {Ma}, {Mac{\'{\i}}as-P{\'e}rez}, {Maggio},
+  {Maino}, {Mandolesi}, {Mangilli}, {Marcos-Caballero}, {Maris}, {Martin},
+  {Mart{\'{\i}}nez-Gonz{\'a}lez}, {Matarrese}, {Mauri}, {McEwen}, {Meerburg},
+  {Meinhold}, {Melchiorri}, {Mennella}, {Migliaccio}, {Millea}, {Mitra},
+  {Miville-Desch{\^e}nes}, {Molinari}, {Moneti}, {Montier}, {Morgante}, {Moss},
+  {Mottet}, {M{\"u}nchmeyer}, {Natoli}, {N{\o}rgaard-Nielsen}, {Oxborrow},
+  {Pagano}, {Paoletti}, {Partridge}, {Patanchon}, {Pearson}, {Peel}, {Peiris},
+  {Perrotta}, {Pettorino}, {Piacentini}, {Polastri}, {Polenta}, {Puget},
+  {Rachen}, {Reinecke}, {Remazeilles}, {Renzi}, {Rocha}, {Rosset}, {Roudier},
+  {Rubi{\~n}o-Mart{\'{\i}}n}, {Ruiz-Granados}, {Salvati}, {Sandri},
+  {Savelainen}, {Scott}, {Shellard}, {Shiraishi}, {Sirignano}, {Sirri},
+  {Spencer}, {Sunyaev}, {Suur-Uski}, {Tauber}, {Tavagnacco}, {Tenti},
+  {Terenzi}, {Toffolatti}, {Tomasi}, {Trombetti}, {Valiviita}, {Van Tent},
+  {Vibert}, {Vielva}, {Villa}, {Vittorio}, {Wandelt}, {Wehus}, {White},
+  {White}, {Zacchei}, \& {Zonca}}]{planck2018}
+{Planck Collaboration}, {et~al.} 2018, ArXiv e-prints, 1807.06205
+
+\bibitem[{{Tegmark}(1997)}]{tegmark1997}
+{Tegmark}, M. 1997, \apjl, 480, L87
+
+\bibitem[{{Tegmark}(1998)}]{tegmark1998}
+{Tegmark}, M. 1998, in Eighteenth Texas Symposium on Relativistic Astrophysics,
+  ed. A.~V. {Olinto}, J.~A. {Frieman}, \& D.~N. {Schramm}, 270
+
+\bibitem[{{Tristram} \& {Ganga}(2007)}]{tristam2007}
+{Tristram}, M., \& {Ganga}, K. 2007, Reports on Progress in Physics, 70, 899
+
+\end{thebibliography}
