@@ -9,45 +9,45 @@ Warning--empty journal in max1960
 "ArXiv e-prints" is a string literal, `journal' is a missing field
 ---they aren't the same literal types for entry tegmark1998
 while executing---line 3369 of file fapj.bst
-You've used 17 entries,
+You've used 24 entries,
             3013 wiz_defined-function locations,
-            766 strings with 17993 characters,
-and the built_in function-call counts, 24227 in all, are:
-= -- 1727
-> -- 3169
-< -- 7
-+ -- 1247
-- -- 1230
-* -- 2768
-:= -- 4644
-add.period$ -- 17
-call.type$ -- 17
-change.case$ -- 664
-chr.to.int$ -- 17
-cite$ -- 18
-duplicate$ -- 332
-empty$ -- 475
-format.name$ -- 1284
-if$ -- 4168
+            807 strings with 20156 characters,
+and the built_in function-call counts, 28855 in all, are:
+= -- 2090
+> -- 3622
+< -- 9
++ -- 1420
+- -- 1396
+* -- 3224
+:= -- 5529
+add.period$ -- 24
+call.type$ -- 24
+change.case$ -- 766
+chr.to.int$ -- 24
+cite$ -- 25
+duplicate$ -- 463
+empty$ -- 666
+format.name$ -- 1467
+if$ -- 5017
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 16
-newline$ -- 55
-num.names$ -- 69
-pop$ -- 690
+missing$ -- 21
+newline$ -- 76
+num.names$ -- 97
+pop$ -- 794
 preamble$ -- 1
-purify$ -- 664
+purify$ -- 765
 quote$ -- 0
-skip$ -- 259
+skip$ -- 361
 stack$ -- 0
-substring$ -- 299
+substring$ -- 428
 swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 153
+type$ -- 216
 warning$ -- 1
-while$ -- 58
+while$ -- 82
 width$ -- 0
-write$ -- 170
+write$ -- 239
 (There was 1 error message)

@@ -18,3 +18,11 @@
 \backcite {jenet1998}{{2}{2.1}{subsection.2.1}}
 \backcite {clearwater2018}{{2}{2.1}{subsection.2.1}}
 \backcite {max1960}{{2}{2.2}{subsection.2.2}}
+\backcite {max1960}{{3}{2.2}{equation.2.6}}
+\backcite {healpix}{{3}{2.3}{subsection.2.3}}
+\backcite {planck2016}{{3}{2.3}{subsection.2.3}}
+\backcite {polspice}{{3}{3.1}{subsection.3.1}}
+\backcite {numpy}{{4}{4}{section.4}}
+\backcite {scipy}{{4}{4}{section.4}}
+\backcite {matplotlib}{{4}{4}{section.4}}
+\backcite {astropy}{{4}{4}{section.4}}
