@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  4 SEP 2018 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  4 SEP 2018 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -532,10 +532,10 @@ Package rerunfilecheck Info: File `digitisation.brf' has not changed.
 (rerunfilecheck)             Checksum: F2378661F1053BA93008131E9DE74B9D;1272.
  ) 
 Here is how much of TeX's memory you used:
- 9091 strings out of 493089
- 127952 string characters out of 6134841
- 291923 words of memory out of 5000000
- 12399 multiletter control sequences out of 15000+600000
+ 9093 strings out of 493089
+ 127972 string characters out of 6134841
+ 292923 words of memory out of 5000000
+ 12401 multiletter control sequences out of 15000+600000
  12702 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,38p,2545b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -557,7 +557,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on digitisation.pdf (5 pages, 236411 bytes).
+Output written on digitisation.pdf (5 pages, 236412 bytes).
 PDF statistics:
  297 PDF objects out of 1000 (max. 8388607)
  269 compressed objects within 3 object streams
