@@ -82,7 +82,7 @@ Observations of the cosmic microwave background (CMB) are of significant value t
 \section{Introduction}
 \label{sec:intro}
 
-Observations of the cosmic microwave background (CMB) have played a key role in cosmology \citep{penzias1965, smoot1992, bennett2013, sptpol2013, planck2018}. They can measure the relativistic number of species and the neutrino mass sum. Current CMB Experiments target science goals such as the discovery of inflationary gravitational waves, measuring the relativistic number of species and the neutrino mass sum, and mapping the large-scale distribution of matter through gravitational lensing and the Sunyaev-Zeldovich (SZ) effects. Through lensing and the SZ effects the CMB probes structure formation, reionisation, and is a powerful test for dark matter and dark energy models \citep{s4sciencebook, core2011, litebird2016, pixie2011}.
+Observations of the cosmic microwave background (CMB) have played a key role in cosmology \citep{penzias1965, smoot1992, bennett2013, sptpol2013, planck2018}. Current CMB Experiments target science goals such as the discovery of inflationary gravitational waves, measuring the relativistic number of species and the neutrino mass sum, and mapping the large-scale distribution of matter through gravitational lensing and the Sunyaev-Zeldovich (SZ) effects. Through lensing and the SZ effects the CMB probes structure formation, reionisation, and is a powerful test for dark matter and dark energy models \citep{s4sciencebook, core2011, litebird2016, pixie2011}.
 
 % CITES FOR PARTICLE PHYSICS WITH CMB, ALSO MAYBE SHUFFLE POSITION OF PARTICLE PHYSICS STUFF, KINDA AWKWARD
 
@@ -251,20 +251,12 @@ We create naive I,Q, and U maps from the simulated I, Q, and U TOD, i.e. the val
 
 We use PolSpice \citep{polspice} to compute $\mathrm{TT}$, $\mathrm{EE}$ and $\mathrm{BB}$ power spectra from the I, Q, and U maps above. To minimise boundary effects we apodise the observed patch using a cosine mask with $\sigma_{\mathrm{APOD}} = \sqrt{600}/2 \hspace{0.7ex} \mathrm{deg}$. %C: Should I also mention the multiplication with a cosine mask that I supply in addition to setting this option on polspice? This will likely be reworked when using Healpix to get the power spectra though.
 
-We find the appropriate normalisation constants for power spectra of few bit TOD as described in the appendix. As seen in Figure \ref{fig:psrecover} all spectra of extremely digitised data recover the input to a satisfying degree. Differences between few bit and the input power spectra are due to observing a single CMB realisation and residual boundary effects.
+We find the appropriate normalisation constants for power spectra of few bit TOD as described in the appendix. As seen in Figure \ref{fig:psrecover} (appendix) all spectra of extremely digitised data recover the input to a satisfying degree. Differences between few bit and the input power spectra are due to observing a single CMB realisation and residual boundary effects.
 
 %%%%%%%%%%%
 %SAMPLE POWER SPECTRA WITH THEORY SPECTRA
 % want to show that we recover the PS, including theory PS in background
 %%%%%%%%%%%
-
-\begin{figure}[htb]\centering
-\includegraphics[width=0.5\textwidth,clip]{Plots/psrecovery.pdf}
-  \caption[Current ]{
-  Input power spectra used to generate the CMB template maps plus detector noise level (black) and power spectra using 3 bit TOD (violet). A simulations with $1,024,000$ hits per map pixel is shown in this plot. No qualitative differences are visible for other depths of observation.
-\label{fig:psrecover}
-}
-\end{figure}
 
 \subsection{White Noise}
 \label{subsec:whitenoise}
@@ -300,7 +292,7 @@ To investigate whether the noise added through digitisation has any angular scal
 \begin{figure}[htb]\centering
 \includegraphics[width=0.5\textwidth,clip]{Plots/diffwn.pdf}
   \caption[Current ]{
-  Power spectra of reconstructed minus input maps for one-bit (green), two-bit (orange), three-bit (violet) and the control case (black) rebined to $\Delta \ell = 100$. No angular scale dependence is observed for all depths of observation. A simulation with $1,024,000$ hits per map pixel is shown.
+  Power spectra of reconstructed minus input maps for one-bit (green), two-bit (orange), three-bit (violet) and the control case (black) rebined to $\Delta \ell = 400$. No angular scale dependence is observed for all depths of observation. A simulation with $1,024,000$ hits per map pixel is shown.
 \label{fig:diffpswn}
 }
 \end{figure}
@@ -361,6 +353,15 @@ This research made use of the NumPy \citep{numpy}, SciPy \citep{scipy}, Matplotl
 
 % APPENDIX
 \appendix
+
+\begin{figure*}[h!t]\centering
+\vspace{-1cm}
+\includegraphics[width=0.8\textwidth,clip]{Plots/psrecovery.pdf}
+  \caption[Current ]{
+  Input power spectra used to generate the CMB template maps plus detector noise level (black) and digitisation noise (gray) and power spectra using three (violet), two (orange), and one (green) bit TOD. Spectra are rebined to $\Delta \ell = 100$. Main panels are the calculated power spectra binned to $\Delta \ell = 100$, accompanying panels show the difference between the corresponding input plus noise curves and the $C_\ell$ of digitised TOD. Variations occur because only observe a single CMB realisation. A simulations with $1,024,000$ hits per map pixel is shown in this plot. No qualitative differences are visible for other depths of observation.
+\label{fig:psrecover}
+}
+\end{figure*}
 
 % result tables
 \subsection{Digitisation Noise Levels}
@@ -575,7 +576,7 @@ This can be calculated for a given digitisation scheme $N, x_i, y_i$ and standar
 
 % this is handy in practice! do not have to account for different detector sensitivities within detector array and T/pol.
 
-%\newpage
+\newpage
 
 \bibliography{digitisation}
 
