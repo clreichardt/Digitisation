@@ -44,11 +44,11 @@
 \newcommand{\planck}{{\sl Planck}}
 \newcommand{\wmap}{{\sl WMAP}}
 \newcommand{\bicepkeck}{BICEP2/Keck Array}
-\newcommand{\sptnew}{SPT-3G}
+\newcommand{\sptnew}{SPT-3G }
 \newcommand{\pb}{\textsc{Polarbear}}
 \newcommand{\simons}{Simons Array}
 \newcommand{\sptpol}{SPTpol}
-\newcommand{\advactpol}{Adv.~ACTpol}
+\newcommand{\advactpol}{Adv.~ACTpol }
 
 \newcommand{\tbd}[1]{\textcolor{Red}{{\bf TBD}: #1}}
 \newcommand{\gab}[1]{\textcolor{Orchid}{[{\bf GS}: #1]}}
@@ -73,7 +73,7 @@
 
 \begin{abstract}
 
-Observations of the cosmic microwave background (CMB) are of significant value to modern cosmology and particle physics. The large size of the time ordered data (TOD) of future CMB experiments presents challenges for mission planning and data analysis. These issues are particularly significant for Antarctica- and space-based experiments, which depend on satellite links to transmit data. We explore the viability of reducing the TOD to few bit numbers to address these challenges. Unlike lossless compression, few bit digitisation introduces additional noise into the data. We present a set of one, two, and three bit digitisation schemes and measure increase in noise in the CMB temperature and polarisation power spectra. The digitisation noise is independent of angular scale and is well-described as a constant percentage of the original detector noise. Three bit digitisation increases the map noise level by $< 2\%$, while reducing the data volume by a factor of ten relative to 32 bit floats. Such digitisation is a promising strategy for upcoming experiments.
+The large size of the time ordered data (TOD) of cosmic microwave background (CMB) experiments presents challenges for mission planning and data analysis. These issues are particularly significant for Antarctica- and space-based experiments, which depend on satellite links to transmit data. We explore the viability of reducing the TOD to few bit numbers to address these challenges. Unlike lossless compression, few bit digitisation introduces additional noise into the data. We present a set of one, two, and three bit digitisation schemes and measure increase in noise in the CMB temperature and polarisation power spectra. The digitisation noise is independent of angular scale and is well-described as a constant percentage of the original detector noise. Three bit digitisation increases the map noise level by $< 2\%$, while reducing the data volume by a factor of ten relative to 32 bit floats. Such digitisation is a promising strategy for upcoming experiments.
 
 \end{abstract}
 
@@ -82,17 +82,17 @@ Observations of the cosmic microwave background (CMB) are of significant value t
 \section{Introduction}
 \label{sec:intro}
 
-Observations of the cosmic microwave background (CMB) have played a key role in cosmology \citep{penzias1965, smoot1992, bennett2013, sptpol2013, planck2018}. Current CMB Experiments target science goals such as the discovery of inflationary gravitational waves, measuring the relativistic number of species and the neutrino mass sum, and mapping the large-scale distribution of matter through gravitational lensing and the Sunyaev-Zeldovich (SZ) effects. Through lensing and the SZ effects the CMB probes structure formation, reionisation, and is a powerful test for dark matter and dark energy models \citep{s4sciencebook, core2011, litebird2016, pixie2011}.
+Observations of the cosmic microwave background (CMB) have played a key role in cosmology \citep{penzias1965, smoot1992, bennett2013, sptpol2013, planck2018}. Current ground-based CMB experiments, like \sptnew \citep{benson2014} at the South Pole telescope (SPT) and \advactpol \citep{thornton2016}, at the Atacama cosmology telescope (ACT), target science goals such as the discovery of inflationary gravitational waves, measuring the number of relativistic species, the neutrino mass sum, and mapping the large-scale distribution of matter through gravitational lensing and the Sunyaev-Zeldovich (SZ) effects. Through lensing and the SZ effects the CMB probes structure formation, reionisation, and is a powerful test for dark matter and dark energy models \citep{s4sciencebook, core2011, litebird2016, pixie2011}.
 
 % CITES FOR PARTICLE PHYSICS WITH CMB, ALSO MAYBE SHUFFLE POSITION OF PARTICLE PHYSICS STUFF, KINDA AWKWARD
 
-Over the last two decades CMB experiments have gone from single detectors to over $10,000$ detectors. The CMB community has developed a variety of compression techniques and computational approaches to handle the increasing volume of data \citep{tristam2007}. These include the compression of time-ordered data (TOD) into maps \citep{tegmark1997}, bandpower estimation \citep{tegmark1998}, and the pseudo-$C_l$ method \citep{brown2005}.
+Over the last two decades, CMB experiments have gone from single detectors to over $10,000$ detectors. The CMB community has developed a variety of compression techniques and computational approaches to handle the increasing volume of data \citep{tristam2007}. These include the compression of time-ordered data (TOD) into maps \citep{tegmark1997}, bandpower estimation \citep{tegmark1998}, and the pseudo-$C_l$ method \citep{brown2005}.
 
-A potential hurdle for experiments at remote locations are the transmission limitations of satellite links. Space-based experiments have employed a combination of lossless and lossy compression techniques, including reduced bits in the TOD \citep{gaztanaga1998, maris2003}. Antarctica-based experiments that transmit a portion of their results via a satellite link downsample their data to meet telemetry allocations, but have not yet used few bit digitisation of the TOD. As we approach the next generation of ground-based experiments, CMB-S4, and the launch of new space-based missions (LiteBIRD, PIXIE, COrE+), we must consider potential transmission bottlenecks carefully. %C: Is there a reference detailing downsampling of SPT data?
+A potential hurdle for experiments at remote locations are the transmission limitations of satellite links. Space-based experiments have employed a combination of lossless and lossy compression techniques, including reduced bits in the TOD \citep{gaztanaga1998, maris2003}. Antarctica-based experiments that transmit a portion of their results via a satellite link downsample their data to meet telemetry allocations, but have not yet used few bit digitisation of the TOD. As we approach the next generation ground-based experiment, CMB-S4, and the launch of new space-based missions (LiteBIRD, PIXIE, COrE+), we must consider potential transmission bottlenecks carefully. %C: Is there a reference detailing downsampling of SPT data?
 
-In this work we present the method of extreme digitisation, which reduces a many bit (often 32 or 64 bit) signal to a few bits for ground-based experiments. We apply extreme digitisation to the TOD and detail the resulting effects on temperature and polarisation power spectra. We find that an optimal three bit digitisation scheme adds $<2\%$ to the map noise level.
+In this work we present the method of extreme digitisation, which reduces a many bit (often 32 or 64 bit) signal to a few bits for ground-based experiments. We apply extreme digitisation to simulated TOD and detail the resulting effects on temperature and polarisation power spectra. We find that an optimal three bit digitisation scheme adds $<2\%$ to the map noise level.
 
-This work is structured as follows. In \S\ref{sec:dig} we detail the challenges that come with handling large data volumes, introduce the process of extreme digitisation and lay out the framework used to test its performance. We describe the power spectrum estimation and present the results in section \S\ref{sec:results}. We summarise our findings in \S\ref{sec:conclusions}.
+This work is structured as follows. In \S\ref{sec:dig} we detail the challenges that come with handling large data volumes, introduce the process of extreme digitisation and lay out the framework used to test its performance. We present results for white and $1/f$ detector noise in section \S\ref{sec:results}. We summarise our findings in \S\ref{sec:conclusions}.
 
 %This work is structured as follows. We detail the arising challenges in handling large TOD in \S\ref{subsec:problem}. We subsequently formulate extreme digitisation in \S\ref{subsec:extremedigitisation} and lay out the framework used to test its performance in \S\ref{subsec:method}. The details of the power spectrum estimation used are laid out in \S\ref{subsec:psestimation}. We continue by presenting the noise induced through the dicitisation process in \S\ref{subsec:additionalnoise} and summarise our findings in \S\ref{sec:conclusions}. 
 
@@ -118,22 +118,22 @@ This work is structured as follows. In \S\ref{sec:dig} we detail the challenges 
 
 %Data influx + Transmission
 
-The science goals of upcoming CMB experiments depend on achieving substantially faster mapping speeds. Given CMB detectors are generally photon noise limited, improving an experiments means adding more detectors. As a result the number of detectors (and data volume) of ground-based experiments has followed a trend like Moore's law, doubling approximately every 2 years \citep{s4sciencebook, Abazajian2015}.
+The science goals of upcoming CMB experiments depend on achieving substantially faster mapping speeds. Given CMB detectors are generally photon noise limited, improving the mapping speed means adding more detectors. As a result the number of detectors (and data volume) of ground-based experiments has followed an exponential trend like Moore's law, doubling approximately every 2 years \citep{s4sciencebook, Abazajian2015}.
 
-The South Pole is one of the best sites for CMB observations on Earth \citep{kovac2007}. The next generation CMB experiment, CMB-S4, plans to include several telescopes at the South Pole. These telescopes would generate a data influx of $\sim\mathcal{O}(10)\mathrm{Tb/d}$. However, the current transmission allocation for SPT-3G is $150\mathrm{Gb/d}$, which will likely see only a moderate increase. The transmission bottleneck could be overcome by recovering the full data on hard drives every summer and transmitting a downsampled version of the data. Downsampling eliminates high frequency information, which makes it unsuitable for science on small angular scales, such as SZ galaxy clusters. The potential delay (i.e. only getting the high frequency data once a year) also introduces risks by delaying when potential faults or issues at high frequency are noticed. One can avoid some of these issues by running substantial portions of the analysis at the South Pole, but this comes with its own costs and challenges.
+The South Pole is one of the best sites for CMB observations on Earth \citep{kovac2007}. CMB-S4 plans to include several telescopes at the South Pole, which will generate a data influx of $\sim\mathcal{O}(10)\mathrm{Tb/d}$. Transferring this data volume via satellite would be expensive. For context, the transmission allocation for a current CMB experiment, SPT-3G, is $150\mathrm{Gb/d}$. The transmission bottleneck could be overcome by recovering the full data on hard drives every summer and transmitting a downsampled version of the data. Downsampling eliminates high frequency information, which makes it unsuitable for science on small angular scales, such as SZ galaxy clusters. The potential delay (i.e. only getting the high frequency data once a year) also introduces risks by delaying when potential faults or issues at high frequency are noticed. One can avoid some of these issues by running substantial portions of the analysis at the South Pole, but this comes with its own costs and challenges.
 
 % maybe dont include this
 %The Planck mission has demonstrated the merits of carrying out CMB observations from space \citep{planck2018}. Upcoming missions aim to exceed the detector count of Planck by at least an order of magnitude \citep{litebird2014, pixie2011, core2018}. Strategies to meet the telemetry specifications of each mission appear to be in development. It is not clear whether the data compression knowledge developed during the Planck mission will guarantee optimal performance for future satellites. Each mission will most likely have to carefully construct a compression algorithm through a combination of lossless and lossy techniques specific to their requirements.
 
 %Planning+Analysis
 
-Beyond transmission challenges, larger data volumes require larger and more expensive disk arrays and make end-to-end simulations of the experiment for the purpose of optimisation on systematics estimation more time consuming. Given the shear size of upcoming data sets, full end-to-end simulation may prove impossible \citep{s4sciencebook}. Operations on the TOD, such as noise removal and map making, are a vital part of CMB data analysis. The exponential growth of CMB data makes these steps increasingly expensive. Few bit digitisation could ameliorate both of these challenges.
+Beyond transmission challenges, a larger data volume increases the size and cost of disk arrays and makes end-to-end simulations of experiments for the purpose of optimisation on systematics estimation more time consuming. Given the sheer size of upcoming data sets, full end-to-end simulations may prove impractical for CMB-S4 \citep{s4sciencebook}. The exponential growth of CMB data makes timestream level operations, such as noise removal and map making, increasingly time consuming. Few bit digitisation could ameliorate all of these challenges.
 
 %Ground-based observations have to rely on different planning strategies or aim to reduce the size of the TOD in order to maximise the productivity of the design stage. Space-based missions carry out a similar analysis specific to their instruments to heighten their science output.
 
 %what others have done
 
-Few bit digitisation has already been demonstrated in space by the Planck mission \citep{maris2003}, as well as in other areas of physics. \cite{jenet1998} explored the application of such compression to radio pulsar timing measurements with success. Recently Clearwater et al. (private communication) have demonstrated the advantages of using one and two bit data when searching for continuous gravitational waves using the Laser Interferometer Gravitational-Wave Observatory (LIGO).
+The Planck mission has already demonstrated the success of extreme digitisation for space-based CMB experiment s\citep{maris2003}. \cite{jenet1998} explored the application of few bit digitisation to radio pulsar timing measurements. Recently Clearwater et al. (private communication) have demonstrated the advantages of using one and two bit data when searching for continuous gravitational waves using the Laser Interferometer Gravitational-Wave Observatory (LIGO).
 
 
 \subsection{Extreme Digitisation}
@@ -141,7 +141,7 @@ Few bit digitisation has already been demonstrated in space by the Planck missio
 
 The optimal digitisation scheme to minimise distortion for a fixed number of bits depends on the details of the input signal. In most cases this optimisation is neglected, since the distortions become vanishingly small as the number of bits increases. However, optimal schemes are critical to the success of extreme (few bit) digitisation. We review the key aspects of designing digitisation schemes as established by \cite{max1960} below.
 
-Digitisation discretises an input signal by sorting it into $N$ appropriate ranges, such that an input between $x_i$ and $x_{i+1}$ produces an output value $y_i$. The set of parameters $N, x_i, y_i$ fully specify a digitisation scheme. Conventionally one chooses $x_{1} = -\infty$ and $x_{N+1} = \infty$, i.e. values beyond some threshold saturate and yield identical output. In order to quantify the performance of a given digitisation scheme we define the distortion as
+Digitisation discretises an input signal by sorting it into $N$ ranges, such that an input between $x_i$ and $x_{i+1}$ produces an output value $y_i$. The set of parameters $N, x_i, y_i$ fully specify a digitisation scheme. Conventionally one chooses $x_{1} = -\infty$ and $x_{N+1} = \infty$, i.e. values beyond some threshold saturate and yield identical output. In order to quantify the performance of a given digitisation scheme we define the distortion as
 
 \begin{equation}\label{eq:distdef}
 D = \left\langle  \left( s - \hat{s} \right)^2 \right\rangle,
@@ -163,7 +163,7 @@ Since we wish to minimise the distortion, we set the derivatives with respect to
 x_i = \frac{y_i+y_{i+1}}{2},
 \end{equation}
 
-which informs us that the cutoff levels $x_i$ should lie midway between the output levels. Setting the derivative of equation \ref{eq:dist} with respect to $y_i$  to zero gives the additional condition
+which informs us that the threshold levels should lie midway between their adjacent output levels. Setting the derivative of equation \ref{eq:dist} with respect to $y_i$  to zero gives the additional condition
 
 \begin{equation} \label{eq:distderiv2}
 \frac{\partial D}{\partial y_i} = -2 \int_{x_i}^{x_{i+1}} \left( x-y_i \right) p(x) dx = 0.
@@ -185,43 +185,47 @@ To progress further, we must consider the probability distribution $p(x)$ of the
 For two bit digitisation we have
 \begin{equation}  \label{eq:2bit}
 \hat{s}_2(t) = \left\{ \begin{array}{rl}
-1.51 \sigma, & s(t) \geq 0.9816 \sigma\\
-0.4528 \sigma, & 0 \leq s(t) < 0.9816 \sigma\\
--0.4528 \sigma, & -0.9816 \sigma \leq s(t) < 0\\
--1.51 \sigma, & -0.9816 \sigma < s(t)\\
+1.51 \sigma, & s(t) \geq 0.98 \sigma\\
+0.45 \sigma, & 0 \leq s(t) < 0.98 \sigma\\
+-0.45 \sigma, & -0.98 \sigma \leq s(t) < 0\\
+-1.51 \sigma, & -0.98 \sigma < s(t)\\
 \end{array} \right. . \end{equation}
 %C: should i round to equal significant figures here? Unfortunately these are the exact values that i used...
 
 Finally the optimal three bit digitisation is described by the eight-level function
 \begin{equation}  \label{eq:3bit}
 \hat{s}_3(t) = \left\{ \begin{array}{rl}
-2.152 \sigma, & s(t) \geq 1.748 \sigma\\
-1.344 \sigma, & 1.05 \sigma \leq s(t) < 1.748 \sigma\\
-0.756 \sigma, & 0.501 \sigma \leq s(t) < 1.05 \sigma\\
-0.245 \sigma, & 0 \leq s(t) < 0.501 \sigma\\
--0.245 \sigma, & -0.501 \sigma \leq s(t) < 0\\
--0.756 \sigma, & -1.05 \sigma \leq s(t) < -0.501 \sigma\\
--1.344 \sigma, & -1.748 \sigma \leq s(t) < -1.05 \sigma\\
--2.152 \sigma, & -1.748 \sigma < s(t)\\
+2.15 \sigma, & s(t) \geq 1.75 \sigma\\
+1.34 \sigma, & 1.05 \sigma \leq s(t) < 1.75 \sigma\\
+0.76 \sigma, & 0.50 \sigma \leq s(t) < 1.05 \sigma\\
+0.25 \sigma, & 0 \leq s(t) < 0.50 \sigma\\
+-0.25 \sigma, & -0.50 \sigma \leq s(t) < 0\\
+-0.76 \sigma, & -1.05 \sigma \leq s(t) < -0.50 \sigma\\
+-1.34 \sigma, & -1.75 \sigma \leq s(t) < -1.05 \sigma\\
+-2.15 \sigma, & -1.75 \sigma < s(t)\\
 \end{array} \right. . \end{equation}
 
-The digitisation schemes listed above do not conserve signal power and need to be re-calibrated to recover the correct power in the map. This is not particularly important, since most CMB experiments determine the absolute calibration from their maps. However, it is worth noting that one can rescale the schemes laid out by \cite{max1960} to preserve power, which is demonstrated in the appendix.
+The digitisation schemes listed above do not conserve signal power and need to be re-calibrated to recover the correct power in the map. We demonstrate that the schemes laid out by \cite{max1960} can be rescaled to conserve power and derive an analytical expression for the normalisation constant in the appendix. We use this analytical rescaling for all results in this work.
+
+%This is not particularly important, since most CMB experiments determine the absolute calibration from their maps. However, 
+
+%However, it is worth noting that one can rescale the schemes laid out by \cite{max1960} to preserve power, which is demonstrated in the appendix.
 
 %Completely different digitisation schemes can be thought of, which would for example reference the most drastic outlier in the data set, or seek to place equal numbers of points into each digitisation level. However, given the assumptions made the schemes derived above minimise the distortion metric defined. Additionally, they are simple enough to be easily implemented computationally. We consider how to design digitisation schemes that preserve the power of the TOD and how to adjust a given digitisation scheme to ensure power conservation in the appendix.
 
-\subsection{Methods}
+\subsection{From Time Ordered Data To Maps}
 \label{subsec:method}
 
-To investigate the performance of the derived digitisation schemes, we simulate many scans over CMB template maps at the timestream level. We add realisations of detector noise and apply the digitisation schemes above to the constructed I, Q, and U TOD. Additionally, we retain the original 64 bit TOD to construct control maps. The different timestreams are binned into maps for a T, E, and B power spectrum analysis.
+To investigate the performance of the derived digitisation schemes, we simulate timestream level scans over a single CMB realisation. We add detector noise and apply the digitisation schemes above to the simulated I, Q, and U TOD. We also retain the original 64 bit TOD to construct control maps. The different timestreams are binned into HEALPix \citep{healpix}\footnote{Available at \url{http://healpix.sourceforge.net/}.} maps with resolution $\mathrm{NSIDE} = 4096$ for a T, E, and B power spectrum analysis.
 
 % We obtain control maps that use 64 bit TOD and maps that have undergone one, two, and three bit digitisation of the TOD. We calculate the temperature and polarisation power spectra of each map and determine the noise level.
 %C: Do I need to mention that we assume to have an infinitely fast spinning plate?
 
-To create the template maps we use the HEALPix \citep{healpix}\footnote{Available at \url{http://healpix.sourceforge.net/}.} framework through the healpy package. We generate a realisation of I, Q and U maps with resolution $\mathrm{NSIDE} = 4096$, corresponding to a pixel area of approximately $0.74 \> \mathrm{arcmin^2}$. This is suitable for the analysis of Stage 3 and CMB-S4 experiments. The input power spectrum is based on the 2015 results of the Planck collaboration. The key cosmological parameters are $H_0 = 67.8 \mathrm{km \> s^{-1} Mpc^{-1}}$, $\Omega_{\mathrm{m}} = 0.308 $, $n_{\mathrm{s}} = 0.968$, and $\tau = 0.066$ \citep{planck2016}.
+We use the healpy Python package to generate a single CMB realisation for the best-fit Planck 2015 cosmology. Specifically, the key cosmological parameters are $H_0 = 67.8 \mathrm{km \> s^{-1} Mpc^{-1}}$, $\Omega_{\mathrm{m}} = 0.308 $, $n_{\mathrm{s}} = 0.968$, and $\tau = 0.066$ \citep{planck2016}.
 
 %C: Do I need to comment on the fact that this reflects no particular frequency channel, but the results come from a combination of all observed channels?
 
-We simulate observing a $600 \> \mathrm{ deg^2}$ patch of the sky with a single detector. Constant elevation scans (CES) are performed beginning at right ascension (RA) and declination (DEC) $(0^\circ, 0^\circ)$. The detector noise level for temperature is $500 \mathrm{\mu K \sqrt{s}}$ and for polarisation observations $\sqrt{2} \hspace{0.7ex} 500 \mathrm{\mu K \sqrt{s}}$, i.e. the corresponding photon noise limit. After covering $24^\circ30'$ along RA the detector is reset to a RA of $0^\circ$ and an offset in DEC corresponding to the pixel size. Through repetition of CES with constant steps in DEC the survey patch is covered. The entire scan strategy is repeated $100$ times with offsets in the starting RA and DEC up to the size of one pixel, ensuring that pixels are sampled uniformly. This scan strategy imitates the SPT, which sweeps across the sky along RA with constant steps in DEC \citep{schaffer2011}.
+We simulate observing a $600 \> \mathrm{ deg^2}$ patch of the sky with a single detector. The detector noise level for temperature is $500 \mathrm{\mu K \sqrt{s}}$ and for polarisation observations $\sqrt{2} \hspace{0.7ex} 500 \mathrm{\mu K \sqrt{s}}$, i.e. the corresponding photon noise limit. Constant elevation scans (CES) are performed beginning at right ascension (RA) and declination (DEC) $(0^\circ, 0^\circ)$. After covering $24^\circ30'$ along RA the detector is reset to a RA of $0^\circ$ and an offset in DEC corresponding to the pixel size. Through repetition of CES with constant steps in DEC the survey patch is covered. This imitates the scan strategy of the SPT \citep{schaffer2011}. The entire scan strategy is repeated $100$ times with offsets in the starting RA and DEC up to the size of one pixel, ensuring that pixels are sampled uniformly.
 
 We create naive I,Q, and U maps from the simulated I, Q, and U TOD, i.e. the value of a map pixel is the average of all TOD samples lying within that pixel. We create four maps of the original 64 bit TOD and one for each of the digitisation schemes. We save the ouput maps at $800$, $8,000$, $80,000$, $1,024,000$, $10,240,000$ and $102,400,000$ hits per pixel.
 
@@ -243,25 +247,27 @@ We create naive I,Q, and U maps from the simulated I, Q, and U TOD, i.e. the val
 
 %The calculation outlined above has considerable computational requirements if we want to reach up to $\sim 10^8$ hits per pixel. This calculation was made possible through use of the NERSC facilities.
 
-\section{Results}
-\label{sec:results}
-
 \subsection{Power Spectrum Estimation}
 \label{subsec:psestimation}
 
-We use PolSpice \citep{polspice} to compute $\mathrm{TT}$, $\mathrm{EE}$ and $\mathrm{BB}$ power spectra from the I, Q, and U maps above. To minimise boundary effects we apodise the observed patch using a cosine mask with $\sigma_{\mathrm{APOD}} = \sqrt{600}/2 \hspace{0.7ex} \mathrm{deg}$. %C: Should I also mention the multiplication with a cosine mask that I supply in addition to setting this option on polspice? This will likely be reworked when using Healpix to get the power spectra though.
+To minimise boundary effects in the subsequent analysis we apodise the observed patch using a cosine mask. For the case of white detector noise we use PolSpice \citep{polspice} to compute $\mathrm{TT}$, $\mathrm{EE}$ and $\mathrm{BB}$ power spectra from output maps. 
 
-We find the appropriate normalisation constants for power spectra of few bit TOD as described in the appendix. As seen in Figure \ref{fig:psrecover} (appendix) all spectra of extremely digitised data recover the input to a satisfying degree. Differences between few bit and the input power spectra are due to observing a single CMB realisation and residual boundary effects.
+For the later considered case of anisotropic noise, we use healpy to calculate the spherical harmonic coefficients $a\ell m$. Since the scan strategy of the simulated observations is similar to the SPT's, smaller values of $m$ correspond to larger angular features along the scan direction \citep{chown2018}. Because of the anisotropic nature of the noise, equally weighting all modes leads to inaccurate power spectra. As a first order approximation to optimal weighting we discount the lowest modes in scan direction.
 
-%%%%%%%%%%%
-%SAMPLE POWER SPECTRA WITH THEORY SPECTRA
-% want to show that we recover the PS, including theory PS in background
-%%%%%%%%%%%
+We rebin the calculated power spectra as mentioned in section \S\ref{sec:results} and assign Fisher matrix error bars \citep{tegmarkdesignersguide1997}.
+
+As seen in Figure \ref{fig:psrecover} (appendix) all spectra of extremely digitised data recover the input to a satisfying degree. Differences between few bit and the input power spectra are due to observing a single CMB realisation and residual boundary effects.
+
+\section{Results}
+\label{sec:results}
 
 \subsection{White Noise}
 \label{subsec:whitenoise}
 
-To quantify the distortion caused by extreme digitisation we infer the fractional increase of the original map noise level, $\Delta \sigma / \sigma$. We calculate this from the noise dominated angular scales in the power spectra via
+We analyse the results of the simulated observations to quantify the distortion digitisation causes in the power spectra and investigate whether the additional noise has any angular scale dependence.
+
+%This will show us whether extreme digitisation is viable for the observations targeted by CMBS-4.
+We infer the fractional increase of the original map noise level, $\Delta \sigma / \sigma$, to quantify the distortion caused by extreme digitisation. We calculate $\Delta \sigma / \sigma$ from the noise dominated angular scales in the power spectra via
 
 \begin{equation}
 \frac{\Delta \sigma}{\sigma} = \sqrt{1 + \frac{C_\ell^\mathrm{X}}{C_\ell^{\mathrm{N}}}} - 1,
@@ -283,16 +289,16 @@ where $C_\ell^{\mathrm{N}}$ and $C_\ell^\mathrm{X}$ are the detector noise level
 
 %\begin{equation}\frac{\Delta \sigma}{\sigma} = \sqrt{\frac{C_l^\mathrm{D}}{C_l^{\mathrm{N}}}} - 1 = \sqrt{1 + \frac{C_\ell^\mathrm{X}}{C_\ell^{\mathrm{N}}}} - 1. \end{equation}
 
-The deduced additional noise for one, two, and three bit digitisation is shown in table \ref{tab:extranoisewhite} in the appendix. We see that 3 bit digitisation performs best, followed by two bit and one bit. This is expected, since more bits allow a more faithful representation of the input signal. We observe that the fractional increase, $\Delta \sigma / \sigma$, is independent of the hits per pixel in the maps and that the compression performs as well for polarisation as is does for temperature spectra. Finally, it is striking how little noise is added. On average one bit digitisation leads to a $(24.8\pm 1.1)\%$ increase in the map noise level, two bit yields a $(6.3\pm0.5)\%$ increase and three bit adds only $(1.7\pm0.2)\%$. This is impressive, given that all schemes considered reduce TOD volume by at least an order of magnitude.
+The deduced additional noise for one, two, and three bit digitisation is shown in Table \ref{tab:extranoisewhite} in the appendix. We see that 3 bit digitisation performs best, followed by two bit and one bit. This is expected, since more bits allow a more faithful representation of the input signal. We observe that the fractional increase, $\Delta \sigma / \sigma$, is independent of the hits per pixel in the maps and that the compression performs as well for polarisation as is does for temperature data. Finally, it is striking how little noise is added. On average one bit digitisation leads to a $(25.1\pm 0.9)\%$ increase in the map noise level, two bit yields a $(6.4\pm0.4)\%$ increase and three bit adds only $(1.8\pm0.2)\%$. The uncertainties given are inferred from the standard deviation of rebined points in the $C_\ell^{\mathrm{N}}/C_\ell^{\mathrm{N}}$ noise tail. The performance of few bit digitisation is impressive, given that all schemes considered reduce TOD volume by at least an order of magnitude.
 
-To investigate whether the noise added through digitisation has any angular scale dependence we subtract the input maps from simulated observations. The power in the difference maps is plotted in Figure \ref{fig:diffpswn}. There is no sign of any angular scale dependence.
+To investigate whether the noise added through digitisation has any angular scale dependence, we subtract the input map from simulated observations. The power in the difference map is plotted in Figure \ref{fig:diffpswn}. There is no sign of any angular scale dependence.
 
 % This is in agreement with (planck website) but does not match the results of (planck short paper). This is likely due to the intricities of the planck compression scheme differing to what is considered here. A full comparison is difficult in the absense of a detailed description of the simulations carried out in either paper.
 
 \begin{figure}[htb]\centering
 \includegraphics[width=0.5\textwidth,clip]{Plots/diffwn.pdf}
   \caption[Current ]{
-  Power spectra of reconstructed minus input maps for one-bit (green), two-bit (orange), three-bit (violet) and the control case (black) rebined to $\Delta \ell = 400$. No angular scale dependence is observed for all depths of observation. A simulation with $1,024,000$ hits per map pixel is shown.
+  Power spectra of reconstructed maps minus input maps for one-bit (green), two-bit (orange), three-bit (violet), and the control case (black). The spectra are bined to $\Delta \ell = 200$. Results for a simulation assuming white detector noise with $1,024,000$ hits per map pixel are shown. The uncertainties assigned underestimate the variations within the noise in the temperature spectrum slightly. No angular scale dependence is observed for all depths of observation.
 \label{fig:diffpswn}
 }
 \end{figure}
@@ -300,26 +306,31 @@ To investigate whether the noise added through digitisation has any angular scal
 \subsection{1/f Noise}
 \label{subsec:oofnoise}
 
-While digitisation clearly works extremely well for white noise, real ground-based CMB experiments face several sources of low-frequency noise. High on the list is atmospheric noise, which may me described by \citep{lay2000}:
+While digitisation clearly works extremely well for white noise, real ground-based CMB experiments face several sources of low-frequency noise. High on the list is atmospheric noise, which \cite{lay2000} describe as
 
 \begin{equation} \label{eq:1/fnoiseform}
-\begin{aligned}
-\left| N_{1/f}(\ell) \right|^2 &= \left| \xi \left(0, \sigma \right) \right|^2\\
-&\times \left[ 1 + \left( \frac{\ell}{\lknee} \right)^{-3/2} \right]^2  exp\left[ -\left( \frac{\lcut}{\ell} \right)^{12} \right],
-\end{aligned}
+\left| N_{1/f}(\ell) \right|^2 = \left| N_{\mathrm{white}} \right|^2 \left[ 1 + \left( \frac{\ell}{\lknee} \right)^{-3/2} \right]^2,
 \end{equation}
 
-where $\xi \left(0, \sigma \right)$ denotes a normally distributed random variable with mean $0$ and standard deviation $\sigma$. The first term on the second line amplifies modes corresponding to large angular scales and low frequencies \citep{tegmarkdesignersguide1997}. The second term on the same line suppresses the lowest modes. For temperature we choose $\lknee = 1000$ and $\lcut = 336$ and for polarisation $\lknee = 50$ and $\lcut = 17$.
+%  exp\left[ -\left( \frac{\lcut}{\ell} \right)^{12} \right]
+
+where $N_{\mathrm{white}}$ denotes white detector noise. In this expression $\ell$ describes the multipole moment of angular features of corresponding size along the scan direction. The scale at which such modes are amplified appreciably by the second term in equation \ref{eq:1/fnoiseform} is set by $\lknee$. We choose $\lknee = 1000$ for temperature and $\lknee = 50$ for polarisation. In practice CMB experiments suppress power in the lowest modes through a range of techniques, including fitting polynomials, sines, and cosines to the TOD. We simulate successful removal of these modes by applying a high pass filter to the noise, such that
+
+\begin{equation} \label{eq:1/fnoiseformfinal}
+\left| N (\ell) \right|^2 = \left| N_{1/f}(\ell) \right|^2 exp\left[ -\left( \frac{\lcut}{\ell} \right)^{12} \right],
+\end{equation}
+
+with $\lcut = 336.3$ for temperature and $\lcut = 16.8$ for polarisation.
 
 We use the same digitisation schemes as for white noise, but modify the parameter $\sigma$ in equations \ref{eq:1bit}, \ref{eq:2bit} and \ref{eq:3bit} by considering Parseval's theorem on the above noise profile. The appropriate value is obtained by evaluating the integral
 
-\begin{equation}
-\sigma^2 = \int_0^\infty \left| N_{1/f}(\ell) \right|^2 d\ell.
+\begin{equation} \label{eq:psvl1/f}
+\sigma^2 = \int_0^\infty \left| N(\ell) \right|^2 d\ell.
 \end{equation}
 
-We carry out the same simulations as described in subsection \ref{subsec:method} using the above noise profile and digitisation schemes for maps with $8,000$, $102,400$ and $1,024,000$ hits per pixel. We use HEALPix to calculate the spherical harmonic coefficients $a\ell m$ and eliminate modes with $m < \lknee$ before calculating the power spectra. Because the scan strategy of the simulated observations is similar to the SPT's, smaller values of $m$ correspond to larger angular features along the scan direction \citep{chown2018}. Because of the anisotropic nature of the noise, equally weighting all modes leads to inaccurate power spectra. Discounting the lowest modes in scan direction is the first order approximation to optimal weighting. The analysis procedure of subsection \S\ref{subsec:whitenoise} is used to characterise the digitisation noise.
+After modifying the digitisation schemes derived in subsection \S\ref{subsec:extremedigitisation} accordingly, we carry out the same simulations as described in subsection \S\ref{subsec:method} with the noise profile given in equation \ref{eq:1/fnoiseformfinal}. We save the output maps at $8,000$, $102,400$ and $1,024,000$ hits per pixel. The analysis procedure of subsection \S\ref{subsec:whitenoise} is used to characterise the digitisation noise.
 
-We recover similar results to the white noise case, with three bit digitisation performing the best, followed by two bit, and one bit. Temperature and polarisation observations incur the same noise penalty. Table \ref{tab:extranoiseoof} in the appendix displays the fractional increase to the detector noise level due to digitisation, $\Delta \sigma / \sigma$. On average one bit digitisation leads to a $(27.7\pm 1.5)\%$ increase in the map noise level, two bit adds $(6.2\pm0.5)\%$, and three bit leads to an increase of only $(1.7\pm0.2)\%$. The digitisation noise shows no angular scale dependence.
+We recover similar results to the white noise case, with three bit digitisation performing the best, followed by two bit, and one bit. Table \ref{tab:extranoiseoof} in the appendix displays the fractional increase to the detector noise level due to digitisation, $\Delta \sigma / \sigma$. While polarisation observations seem to incur a slightly higher noise penalty compared to temperature, deviations do not exceed $3\sigma$. On average one bit digitisation leads to a $(27.7\pm 1.5)\%$ increase in the map noise level, two bit adds $(6.2\pm0.5)\%$, and three bit leads to an increase of only $(1.7\pm0.2)\%$. The digitisation noise shows no angular scale dependence. Thus the effectiveness of few bit digitisation is not limited to the white noise case, but extents to more realistic noise profiles.
 
 % find a different home for this
 %Extreme digitisation is a viable lossy compression technique when dealing with low signal to noise, large data sets. A signal that varies slowly with respect to the sampling rate can be reconstructed well. A small signal will also prevent saturation of the output, i.e. the inability of the digitised output to represent numbers larger than $y_N N_{\mathrm{hit}}$ or smaller than $y_1 N_{\mathrm{hit}}$, where $N_{\mathrm{hit}}$ is the number of data points in an interval. These conditions are satisfied by CMB data and our findings reflect this.
@@ -327,20 +338,21 @@ We recover similar results to the white noise case, with three bit digitisation 
 \section{Conclusion}
 \label{sec:conclusions}
 
-In this work we have conducted an investigation of extreme digitisation as a technique in combating the challenges of large data volumes for ground-based CMB experiments. In particular the reduction of TOD volume by an order of magnitude decreases the transmission requirements from remote locations. The reduction may also streamline TOD simulations.
+In this work we have conducted an investigation of extreme digitisation as a technique in combating the challenges of large data volumes for ground-based CMB experiments. In particular the reduction of TOD volume by an order of magnitude decreases the transmission requirements from remote locations. The reduction may also streamline the analysis and simulation of TOD.
 
-We present a set of one, two, and three bit digitisation schemes. In both, the white noise and $1/f$ noise cases, we find that optimal three bit digitisation adds as little as $1.7\%$ to the map noise level for temperature and polarisation observations alike. No change in the results is observed for maps of different hits per pixel and no angular scale dependence was observed in the added noise.
+We present a set of one, two, and three bit digitisation schemes. For white and $1/f$ detector noise alike, we find that optimal three bit digitisation adds as little as $<2\%$ to the map noise level. This is true for temperature and polarisation observations. No change in the results is observed for maps of different hits per pixel and no angular scale dependence was observed in the added noise.
 
 % restate from first paragraph
 %The additional noise is insignificant for ground-based experiments, which increase their detector count by orders of magnitude between generations. Space-based experiments which have their own unique issues may consider this noise penalty problematic.
 
-Future work should focus on finding the higher statistical moments of the digitisation noise. Using the digitised TOD for cluster finding can help determine the skewness and kurtosis of the additional noise.
+Given that the digitisation noise remains low at small angular scales, cluster finding algorithms may perform well on few bit TOD. Investigating this will also help determine the higher order statistical moments, i.e. skewness and kurtosis, of the digitisation noise.
 
 \acknowledgments % thank patrick for discussion/starting point? Andrew?
 
 % Melbourne CMB group, funding, NERSC.
 
-We thank the \changed{referee as well as} Srinivasan Raghunathan and Federico Bianchini for valuable feedback on the manuscript. 
+We are grateful for insightful discussions about the prospects of extreme digitisation for CMB experiments with Andrew Melatos and Patrick Clearwater.
+We thank the \changed{referee as well as} Srinivasan Raghunathan, Federico Bianchini, Nikhel Gupta, Andrew Melatos, and Patrick Clearwater for valuable feedback on the manuscript.
 We acknowledge support from an Australian Research Council Future Fellowship (FT150100074), and also from the University of Melbourne. 
 This research used resources of the National Energy Research Scientific Computing Center, which is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231. 
 We acknowledge the use of the Legacy Archive for Microwave Background Data Analysis (LAMBDA). Support for LAMBDA is provided by the NASA Office of Space Science.
@@ -355,10 +367,10 @@ This research made use of the NumPy \citep{numpy}, SciPy \citep{scipy}, Matplotl
 \appendix
 
 \begin{figure*}[h!t]\centering
-\vspace{-1cm}
+\vspace{-1.5cm}
 \includegraphics[width=0.8\textwidth,clip]{Plots/psrecovery.pdf}
   \caption[Current ]{
-  Input power spectra used to generate the CMB template maps plus detector noise level (black) and digitisation noise (gray) and power spectra using three (violet), two (orange), and one (green) bit TOD. Spectra are rebined to $\Delta \ell = 100$. Main panels are the calculated power spectra binned to $\Delta \ell = 100$, accompanying panels show the difference between the corresponding input plus noise curves and the $C_\ell$ of digitised TOD. Variations occur because only observe a single CMB realisation. A simulations with $1,024,000$ hits per map pixel is shown in this plot. No qualitative differences are visible for other depths of observation.
+     Input power spectra used to generate the CMB template map plus detector noise level (black) and digitisation noise (gray); power spectra using three (violet), two (orange), and one (green) bit TOD. Main panels show the TT, EE, and BB power spectra; accompanying panels show the residual of the input plus noise curves and the power spectra recovered from few bit TOD. We assume white detector noise and show results for maps with $1,024,000$ hits per pixel. Spectra are bined to $\Delta \ell = 100$. Variations are attributed to observing a single CMB realisation and residual boundary effects. Even though small angular scales have small errors in the temperature power spectrum, no significant trend in the residual is found. No qualitative differences are visible for other depths of observation.
 \label{fig:psrecover}
 }
 \end{figure*}
@@ -376,34 +388,36 @@ This research made use of the NumPy \citep{numpy}, SciPy \citep{scipy}, Matplotl
 Hits Per Pixel & Channel & 1 Bit & 2 Bit & 3 Bit \\
 \hline
 \hline
-\multirow{3}{*}{$800$}  & TT  & $ 0.252 \pm 0.009 $  & $ 0.064 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{800}  & TT  & $ 0.252 \pm 0.009 $  & $ 0.064 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
 & EE  & $ 0.253 \pm 0.012 $  & $ 0.064 \pm 0.005 $  & $ 0.017 \pm 0.004 $ \\
 & BB  & $ 0.254 \pm 0.011 $  & $ 0.065 \pm 0.005 $  & $ 0.018 \pm 0.004 $ \\
 \hline
-\multirow{3}{*}{$8,000$}  & TT  & $ 0.252 \pm 0.008 $  & $ 0.064 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{8,000}  & TT  & $ 0.252 \pm 0.008 $  & $ 0.064 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
 & EE  & $ 0.252 \pm 0.007 $  & $ 0.064 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
 & BB  & $ 0.252 \pm 0.018 $  & $ 0.063 \pm 0.009 $  & $ 0.018 \pm 0.004 $ \\
 \hline
-\multirow{3}{*}{$80,000$}  & TT  & $ 0.249 \pm 0.011 $  & $ 0.064 \pm 0.005 $  & $ 0.018 \pm 0.002 $ \\
-& EE  & $ 0.250 \pm 0.011 $  & $ 0.064 \pm 0.005 $  & $ 0.018 \pm 0.002 $ \\
-& BB  & $ 0.248 \pm 0.018 $  & $ 0.063 \pm 0.009 $  & $ 0.018 \pm 0.003 $ \\
+\multirow{3}{*}{80,000}  & TT  & $ 0.253 \pm 0.008 $  & $ 0.065 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
+& EE  & $ 0.251 \pm 0.009 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
+& BB  & $ 0.250 \pm 0.015 $  & $ 0.064 \pm 0.007 $  & $ 0.018 \pm 0.003 $ \\
 \hline
-\multirow{3}{*}{$1,024,000$}  & TT  & $ 0.250 \pm 0.009 $  & $ 0.063 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{1,024,000}  & TT  & $ 0.250 \pm 0.009 $  & $ 0.063 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
 & EE  & $ 0.252 \pm 0.008 $  & $ 0.065 \pm 0.003 $  & $ 0.018 \pm 0.002 $ \\
 & BB  & $ 0.252 \pm 0.008 $  & $ 0.064 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
 \hline
-\multirow{3}{*}{$10,240,000$}  & TT  & $ 0.186 \pm 0.025 $  & $ 0.046 \pm 0.007 $  & $ 0.013 \pm 0.002 $ \\
-& EE  & $ 0.253 \pm 0.009 $  & $ 0.065 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
-& BB  & $ 0.252 \pm 0.012 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
+\multirow{3}{*}{10,240,000}  & TT  & $ 0.248 \pm 0.008 $  & $ 0.063 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
+& EE  & $ 0.253 \pm 0.008 $  & $ 0.065 \pm 0.003 $  & $ 0.018 \pm 0.002 $ \\
+& BB  & $ 0.252 \pm 0.010 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
 \hline
-\multirow{3}{*}{$102,400,000$}  & TT  & $ 0.246 \pm 0.005 $  & $ 0.063 \pm 0.002 $  & $ 0.017 \pm 0.001 $ \\
+\multirow{3}{*}{102,400,000}  & TT  & $ 0.246 \pm 0.005 $  & $ 0.063 \pm 0.002 $  & $ 0.017 \pm 0.001 $ \\
 & EE  & $ 0.251 \pm 0.008 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
 & BB  & $ 0.252 \pm 0.009 $  & $ 0.064 \pm 0.003 $  & $ 0.018 \pm 0.002 $ \\
 \hline
-\multicolumn{2}{c}{Average}  & $ 0.248 \pm 0.011 $  & $ 0.063 \pm 0.005 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{Average}  & TT  & $ 0.25 \pm 0.008 $  & $ 0.064 \pm 0.003 $  & $ 0.017 \pm 0.002 $ \\
+ & EE  & $ 0.252 \pm 0.009 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
+ & BB  & $ 0.252 \pm 0.012 $  & $ 0.064 \pm 0.005 $  & $ 0.018 \pm 0.003 $ \\
 \end{tabular}
 \tablecomments{ 
-Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, two, and three bit digitisation for white detector noise. We notice that there is no appreciable variation with depth of observations and channel for a given digitisation scheme.
+Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, two, and three bit digitisation for white detector noise. We use the standard deviation of points in the $C_\ell^\mathrm{X}/C_\ell^\mathrm{N}$ noise tail as the uncertainty. There is no appreciable variation with depth of observations and channel for a given digitisation scheme.
 } \normalsize
 \end{center}
 \end{table*}
@@ -417,22 +431,24 @@ Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, t
 Hits Per Pixel & Channel & 1 Bit & 2 Bit & 3 Bit \\
 \hline
 \hline
-\multirow{3}{*}{$8,000$}  & TT  & $ 0.231 \pm 0.017 $  & $ 0.058 \pm 0.005 $  & $ 0.016 \pm 0.002 $ \\
+\multirow{3}{*}{8000}  & TT  & $ 0.231 \pm 0.017 $  & $ 0.058 \pm 0.005 $  & $ 0.016 \pm 0.002 $ \\
 & EE  & $ 0.300 \pm 0.012 $  & $ 0.064 \pm 0.004 $  & $ 0.018 \pm 0.002 $ \\
 & BB  & $ 0.294 \pm 0.022 $  & $ 0.062 \pm 0.007 $  & $ 0.017 \pm 0.003 $ \\
 \hline
-\multirow{3}{*}{$102,400$}  & TT  & $ 0.235 \pm 0.014 $  & $ 0.060 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{102400}  & TT  & $ 0.235 \pm 0.014 $  & $ 0.060 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
 & EE  & $ 0.299 \pm 0.009 $  & $ 0.064 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
 & BB  & $ 0.298 \pm 0.025 $  & $ 0.064 \pm 0.007 $  & $ 0.018 \pm 0.002 $ \\
 \hline
-\multirow{3}{*}{$1,024,000$}  & TT  & $ 0.238 \pm 0.013 $  & $ 0.06 \pm 0.005 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{1024000}  & TT  & $ 0.238 \pm 0.013 $  & $ 0.06 \pm 0.005 $  & $ 0.017 \pm 0.002 $ \\
 & EE  & $ 0.299 \pm 0.008 $  & $ 0.063 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
-& BB  & $ 0.299 \pm 0.010 $  & $ 0.064 \pm 0.005 $  & $ 0.018 \pm 0.002 $ \\
+& BB  & $ 0.299 \pm 0.01 $  & $ 0.064 \pm 0.005 $  & $ 0.018 \pm 0.002 $ \\
 \hline
-\multicolumn{2}{c}{Average}  & $ 0.277 \pm 0.015 $  & $ 0.062 \pm 0.005 $  & $ 0.017 \pm 0.002 $ \\
+\multirow{3}{*}{Average}  & TT  & $ 0.235 \pm 0.015 $  & $ 0.059 \pm 0.005 $  & $ 0.016 \pm 0.002 $ \\
+ & EE  & $ 0.299 \pm 0.010 $  & $ 0.064 \pm 0.004 $  & $ 0.017 \pm 0.002 $ \\
+ & BB  & $ 0.297 \pm 0.019 $  & $ 0.063 \pm 0.006 $  & $ 0.017 \pm 0.003 $ \\
 \end{tabular}
 \tablecomments{ 
-Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, two, and three bit digitisation for $1/f$ detector noise. As in the white noise case we observe no significant trend with the numbers of hits per map pixel or channel for a given digitisation scheme. No significant deviation in the values compared to simulations assuming white detector noise is found.
+Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, two, and three bit digitisation for $1/f$ detector noise. Uncertainties are obtained in the same way as for white noise. As in the white noise case we observe no significant trend with the numbers of hits per map pixel or channel for a given digitisation scheme. No significant deviation in the values compared to simulations assuming white detector noise is found.
 } \normalsize
 \end{center}
 \end{table*}
@@ -442,22 +458,22 @@ Percent addition to the map noise level, $\Delta \sigma / \sigma$, due to one, t
 \subsection{Preserving Power in Digitised Data}
 \label{subsec:appendixpreservepower}
 
-As mentioned in subsection \S\ref{subsec:extremedigitisation}, equation \ref{eq:distdef} did not require signal power to be conserved when constructing a digitisation scheme. It is relatively simple to add this requirement however, since it boils down to rescaling the digitised output by a constant, $\gamma$. Specifically we will derive an expression for $\gamma$, such that a cross-spectrum of two digitised maps yields an unbiased estimate of the input power spectrum. Mathematically, this is equivalent to demanding:
+As mentioned in subsection \S\ref{subsec:extremedigitisation}, equation \ref{eq:distdef} does not demand not signal power conservation in constructing a digitisation scheme. It is relatively simple to impose power conservation, since it boils down to rescaling the digitised output by a constant, $\gamma$. We derive an expression for $\gamma$, such that a cross-spectrum of two digitised maps yields an unbiased estimate of the input power spectrum. Mathematically, this is equivalent to:
 
 \begin{equation} \label{eq:normcrosspower}
 \langle (\mu + \xi_1) (\mu + \xi_2) \rangle = \gamma^2 \langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle,
 \end{equation}
 
-where all timestreams sample the same underlying signal, $\mu$, but add different noise realisations $\xi_{1, 2}$. The digitisation process is denoted by $D(\dots)$. The covariance of two timestreams must be zero. This still holds true once the signals have been digitised, as this only discretises the probability distributions at play but does not change the underlying dynamics. Therefore
+where all timestreams sample the same underlying signal, $\mu$, but add different noise realisations $\xi_{1, 2}$. The digitisation process is denoted by $D(\dots)$. The covariance of two timestreams must be zero. This remains true for the digitised signals, as digitisation discretises the probability distributions at play but does not change the underlying dynamics. Therefore
 
 \begin{equation}
 \langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle = \sum_1 \sum_2 D(\mu + \xi_1) D(\mu + \xi_1) P(D(\mu + \xi_1)) P(D(\mu + \xi_2)),
 \end{equation}
 
-where $P$ denotes the probability of a certain output level occurring. For a small signal $D(\mu + \xi)=D(\xi)$. The probabilities $P$ can then be expressed as integrals over probability distributions. Assuming Gaussian detector noise we introduce normal distributions $p(\xi)$ with mean $\mu$ and standard deviation $\sigma$.
+where we sum over all output levels of both timestreams $(1, 2)$ and $P$ denotes the probability of an output level occurring. The probabilities $P$ can be expressed as integrals over probability distributions. Assuming Gaussian detector noise we introduce normal distributions $p(\xi)$ with mean zero and standard deviation $\sigma$.
 
 \begin{equation}
-\langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle = \sum_{i=0}^N \sum_{j=0}^N  \int_{x_i}^{x_{i+1}} \int_{x_j}^{x_{j+1}} y_i y_j p(\xi_1) p(\xi_2) d\xi_1 d\xi_2.
+\langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle = \sum_{i=0}^N \sum_{j=0}^N  \int_{x_i-\mu}^{x_{i+1}-\mu} \int_{x_j-\mu}^{x_{j+1}-\mu} y_i y_j p(\xi_1) p(\xi_2) d\xi_1 d\xi_2.
 \end{equation}
 
 We separate the above sums and recognise the error function.
@@ -483,7 +499,7 @@ We separate the above sums and recognise the error function.
 \end{aligned}
 \end{equation}
 
-Where we have used the Maclaurin series of the error function and the binomial expansion. Combining all possible sums and moving the $i, j$ summation forwards yields
+Where we have used the Maclaurin series expansion of the error function and the binomial expansion. Moving the $i, j$ summation forwards yields
 
 \begin{equation} \label{eq:dcompleteklsum}
 \begin{aligned}
@@ -511,16 +527,16 @@ We split the innermost term in equation \ref{eq:dcompleteklsum} and shift indici
 Equations \ref{eq:digitequalspacecondition} and \ref{eq:digitareacondition} in subsection \S\ref{subsec:extremedigitisation} demand that for a Gaussian input distribution $y_i = -y_{N-i}$ and $x_i = -x_{N+1-i}$. This simply states symmetry of the digitisation thresholds and output levels about zero (or after a global mean has been subtracted). Therefore
 
 \begin{equation} \label{eq:ijsumpsiflip}
-\sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j \left( \psi_i^{k, n} \psi_j^{l, m} + (-1)^{k+1} \psi_{i}^{k, n} \psi_j^{l, m} + (-1)^{l+1} \psi_i^{k, n} \psi_{j}^{l, m} + (-1)^{k+l} \psi_{N-i}^{k, n} \psi_{N-j}^{l, m} \right).
+\sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j \left( \psi_i^{k, n} \psi_j^{l, m} + (-1)^{k+1} \psi_{i}^{k, n} \psi_j^{l, m} + (-1)^{l+1} \psi_i^{k, n} \psi_{j}^{l, m} + (-1)^{k+l} \psi_{N-i}^{k, n} \psi_{N-j}^{l, m} \right),
 \end{equation}
 
-since $\psi_{N-i}^{k,n} = (-1)^{k} \psi_{i}^{k,n}$. Since we assume that $\mu$ is small we would like to calculate the leading order terms in the above. Since we have power of $\mu^{k+l}$ in equation \ref{eq:dcompleteklsum} we focus on the case of even $k$ and $l$ first. This reduces equation \ref{eq:ijsumpsiflip} to
+since $\psi_{N-i}^{k,n} = (-1)^{k} \psi_{i}^{k,n}$.  For ground-based CMB observations $\mu$ is small. Therefore we calculate the leading order terms in $\mu$ in equation \ref{eq:dcompleteklsum}. Since this equation has powers of $\mu^{k+l}$ we split the sum over $k, l$ as follows
 
 \begin{equation}
 \sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j  \left( \psi_i^{k, n} \psi_j^{l, m} - \psi_{i}^{k, n} \psi_j^{l, m} - \psi_i^{k, n} \psi_{j}^{l, m} + \psi_{i}^{k, n} \psi_{j}^{l, m} \right) = 0,
 \end{equation}
 
-The term vanishes. For odd $k$ and $l$ equation \ref{eq:ijsumpsiflip} may be simplified to
+For odd $k$ and $l$ equation \ref{eq:ijsumpsiflip} may be simplified to
 
 \begin{equation}
 \sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j \left( \psi_i^{k, n} \psi_j^{l, m} + \psi_{i}^{k, n} \psi_j^{l, m} + \psi_i^{k, n} \psi_{j}^{l, m} + \psi_{i}^{k, n} \psi_{j}^{l, m} \right) = 4 \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j \psi_i^{k, n} \psi_j^{l, m}.
@@ -544,13 +560,13 @@ for odd $k$ and even $l$. Therefore all odd powers of $\mu$ in equation \ref{eq:
 \langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle = c \mu^2 + \mathcal{O}(\mu^4)
 \end{equation}
 
-where $c$ is some constants that depend on the specific digitisation scheme chosen. We have proved that in the small signal limit and for Gaussian noise normalisation can be achieved through rescaling by a constant. Returning to equation \ref{eq:normcrosspower} we see
+where $c$ is some constants that depend on the specific digitisation scheme chosen. Returning to equation \ref{eq:normcrosspower} we see
 
 \begin{equation}
 \gamma^2  = \frac{\langle (\mu + \xi_1) (\mu + \xi_2) \rangle}{\langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle} = \frac{1}{c + \mathcal{O}(\mu^2)} = \frac{1}{c},
 \end{equation}
 
-where we have ignored higher order contributions. From equation \ref{eq:dcompleteklsum} we obtain an expression for $\gamma$, by investigating $k=l=1$ terms.
+where we have ignored terms beyond quadratic order. By investigating $k=l=1$ terms in equation \ref{eq:dcompleteklsum} we obtain an expression for $\gamma$.
 
 \begin{equation}
 \begin{aligned}
@@ -559,11 +575,11 @@ c = \sum_{i,j=0}^N  \frac{y_i y_j}{\pi} \left[ \sum_{n,m = 0}^\infty \frac{1}{n!
 \end{equation}
 
 \begin{equation}
-c = \sum_{i,j=0}^N \frac{y_i y_j}{2\pi\sigma^2} \left[ \sum_{n = 0}^\infty \frac{(-1)^n}{n!} \frac{1}{(\sqrt{2}\sigma)^{2n}}  ( x_{i+1}^{2n} - x_{i}^{2n} ) \right] \left[ \sum_{m = 0}^\infty \frac{(-1)^m}{m!} \frac{1}{(\sqrt{2}\sigma)^{2m}} ( x_{j+1}^{2m} - x_{j}^{2m} ) \right].
+= \sum_{i,j=0}^N \frac{y_i y_j}{2\pi\sigma^2} \left[ \sum_{n = 0}^\infty \frac{(-1)^n}{n!} \frac{1}{(\sqrt{2}\sigma)^{2n}}  ( x_{i+1}^{2n} - x_{i}^{2n} ) \right] \left[ \sum_{m = 0}^\infty \frac{(-1)^m}{m!} \frac{1}{(\sqrt{2}\sigma)^{2m}} ( x_{j+1}^{2m} - x_{j}^{2m} ) \right].
 \end{equation}
 
 \begin{equation}
-c = \sum_{i,j=0}^N \frac{y_i y_j}{2\pi\sigma^2} \left\{ exp \left[ - \left(\frac{x_{i+1}}{\sqrt{2}\sigma} \right)^2 \right] - exp \left[ - \left(\frac{x_{i}}{\sqrt{2}\sigma} \right)^2 \right] \right\} \left\{ exp \left[ - \left(\frac{x_{j+1}}{\sqrt{2}\sigma} \right)^2 \right] - exp \left[ - \left(\frac{x_{j}}{\sqrt{2}\sigma} \right)^2 \right] \right\}
+= \sum_{i,j=0}^N \frac{y_i y_j}{2\pi\sigma^2} \left\{ exp \left[ - \left(\frac{x_{i+1}}{\sqrt{2}\sigma} \right)^2 \right] - exp \left[ - \left(\frac{x_{i}}{\sqrt{2}\sigma} \right)^2 \right] \right\} \left\{ exp \left[ - \left(\frac{x_{j+1}}{\sqrt{2}\sigma} \right)^2 \right] - exp \left[ - \left(\frac{x_{j}}{\sqrt{2}\sigma} \right)^2 \right] \right\}
 \end{equation}
 
 The normalisation constant therefore is given by
@@ -576,7 +592,7 @@ This can be calculated for a given digitisation scheme $N, x_i, y_i$ and standar
 
 % this is handy in practice! do not have to account for different detector sensitivities within detector array and T/pol.
 
-\newpage
+%\newpage
 
 \bibliography{digitisation}
 
