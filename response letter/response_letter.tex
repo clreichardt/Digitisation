@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%\documentclass[preprint2]{aastex61}
+%\documentclass[12pt,preprint]{aastex}
+
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage[backref,breaklinks,colorlinks,citecolor=blue]{hyperref}
+\usepackage{natbib}
+%\usepackage{natbib}
+\bibliographystyle{fapj}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{soul}
+
+%\newcommand{\jcap}{JCAP}
+
+\newcommand{\sqdeg}{deg$^2$ }
+\newcommand{\omb}{\ensuremath{\Omega_b h^2}}
+\newcommand{\omc}{\ensuremath{\Omega_c h^2}}
+\newcommand{\clpp}{\ensuremath{C_{L}^{\phi\phi}}}
+\newcommand{\cpmf}{\ensuremath{C_{\ell}^{\rm PMF}}}
+
+\newcommand{\cpmftens}{\ensuremath{C_{\ell}^{\rm PMF,\,tens}}}
+\newcommand{\cpmfvec}{\ensuremath{C_{\ell}^{\rm PMF,\,vec}}}
+\newcommand{\apmf}{\ensuremath{A_{\rm PMF}}}
+\newcommand{\bpmf}{\ensuremath{B_{\rm 1\,Mpc}}}
+\newcommand{\alens}{\ensuremath{A_{\rm lens}}}
+\newcommand{\lcdm}{\ensuremath{\Lambda}CDM}
+\newcommand{\nrun}{\ensuremath{n_{\rm run}}}
+\newcommand{\neff}{\ensuremath{N_{\rm eff}}}
+\newcommand{\ho}{H\ensuremath{_0}}
+\newcommand{\mnu}{\ensuremath{\sum m_\nu}}
+\newcommand{\ukarcmin}{\ensuremath{\mu}{\rm K-arcmin}}
+\newcommand{\lknee}{\ensuremath{\ell_{\rm knee}}}
+\newcommand{\lcut}{\ensuremath{\ell_{\rm min}}}
+\newcommand{\fermilat}{\textit{Fermi}-LAT}
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\planck}{{\sl Planck}}
+\newcommand{\wmap}{{\sl WMAP}}
+\newcommand{\bicepkeck}{BICEP2/Keck Array}
+\newcommand{\sptnew}{SPT-3G }
+\newcommand{\pb}{\textsc{Polarbear}}
+\newcommand{\simons}{Simons Array}
+\newcommand{\sptpol}{SPTpol}
+\newcommand{\advactpol}{Adv.~ACTpol }
+
+\newcommand{\tbd}[1]{\textcolor{Red}{{\bf TBD}: #1}}
+\newcommand{\gab}[1]{\textcolor{Orchid}{[{\bf GS}: #1]}}
+\newcommand{\changed}[1]{\textcolor{Red}{#1}}
+\newcommand{\removed}[1]{\textcolor{Red}{}}
+\newcommand{\question}[1]{\textcolor{Blue}{#1}}
+\newcommand{\CR}[1]{\textit{\textcolor{Blue}{#1}}}
+\newcommand{\CRremove}[1]{\st{#1}}
+\include{number_list}
+
+%
+
+\usepackage{fullpage}
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+% ref to section \S\ref{sec:label}
+
+%\submitjournal{ApJ}
+\def\Melbourne{1}
+\def\uci{2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%\title{MNRAS: MN-18-3671-MJ\\Response to the Referee}
+
+%\maketitle
+
+\begin{center}
+\Large MNRAS: MN-18-3671-MJ\\Response to the Referee
+\end{center}
+
+Thank you for your comments. We are pleased that you found our manuscript to be a valuable enquiry into data compression techniques for CMB experiments and a detailed investigation of the effects of few-bit digitisation on the CMB power spectra. We found your suggestion of looking at the compressive power of few-bit digitisation together with established lossless compression techniques particularly insightful and exciting to research. Please find a detailed response to your report below. Shown in blue are remarks in the reviewer's report. The authors' reply is given in black and if applicable relevant sections of the manuscript that have been changed in response are appended in red.
+
+\vspace{0.5cm}
+
+\hrule
+\vspace{0.1cm}
+\hrule
+
+\vspace{0.5cm}
+
+Reviewer's comment:
+
+\indent \question{[...] the article's case is weakened considerably by a lack of comparison to existing lossless approaches to data compression used in the field. [...]}
+
+\vspace{0.25cm}
+
+Authors' reply:
+
+\indent The referee raises a fair point. We contacted the BICEP Array, POLARBEAR, and SPT-3G experiments to enquire about the lossless compression algorithms currently being used. BICEP uses a Lempel-Ziv-Markov chain algorithm (LZMA), while the SPT and POLARBEAR use the free lossless audio codec (FLAC). We applied few-bit digitisation to a simulated timestream and then applied each compression scheme to the few bit timestreams. 
+We compared this to the size of files when the two compression schemes were applied to the original 64bit timestreams. 
+We found that while using either LZMA or FLAC reduces the compressive power of extreme digitisation, substantial data volume savings are still achieved. We appended the following subsection to section 3 (Results) of the manuscript to include this insight:
+
+\vspace{0.25cm}
+
+Changes to the manuscript:
+
+\indent \textbf{\changed{3.3 Existing Compression Techniques}}
+
+\changed{Current-generation ground-based CMB experiments employ lossless and lossy compression techniques to manage their transmission bottlenecks. To test whether few-bit digitisation is competitive to existing lossy compression techniques, it is necessary to see if it still provides a substantial reduction in data volume if used in conjunction with lossless compression algorithms.}
+
+\changed{We focus on lossless compression via the Lempel-Ziv-Markoc chain algorithm (LZMA), which is used by the Background Imaging of Cosmic Extragalactic Polarization (BICEP) experiment, and the free lossless audio codec (FLAC), which the SPT and POLARBEAR experiments employ (private communication). We examine the compression of a single CES of our simulation, consisting of ca. $10^7$ data points, by applying LZMA and FLAC separately to four timestreams: the original 64-bit TOD, and copies that have undergone 1-, 2-, and 3-bit digitisation.}
+
+\changed{We find that even though the data reduction power of few-bit digitisation is decreased when used in conjunction with lossless compression algorithms, substantial savings are still achieved. Applying few-bit digitisation to the TOD prior to compression with FLAC reduces the final file size by a factor $5.89$ compared to the FLAC compressed 64-bit data. This is the same for all digitisation schemes considered. Working with LZMA, the data volume of the TOD can be reduced with respect to compressed 64-bit data by factors of $17.34$, $26.23$, and $44.48$ for 3-, 2-, and 1-bit digitisation, respectively. Few-bit digitisation still achieves considerable data reduction if used together with established lossless compression algorithms.}
+
+\vspace{0.5cm}
+
+\hrule
+
+\vspace{0.5cm}
+
+Reviewer's comment:
+
+\indent \question{It is unclear from the text what, exactly, the resulting scheme is after equation 13. I found equations 7-9 extremely helpful to understand the approach taken earlier and it would be very helpful to see the analogs (is it just replacing sigma in equations 7-9?)}
+
+\vspace{0.25cm}
+
+Authors' reply:
+
+\indent Yes, it is simply replacing $\sigma$ in equations 7-9. We have changed the wording of the relevant section to make this more clear.
+
+\vspace{0.25cm}
+
+Changes to the manuscript:
+
+\indent \changed{We use the same digitisation schemes as for white noise, but replace the parameter $\sigma$ in equations \ref{eq:1bit}, \ref{eq:2bit} and \ref{eq:3bit} by considering Parseval's theorem on the above noise profile. The appropriate value is obtained by numerically evaluating the integral}
+
+\[ \changed{
+\sigma^2 = \int_0^\infty \left| N(\ell) \right|^2 d\ell. }
+\]
+
+\vspace{0.5cm}
+
+\hrule
+
+\vspace{0.5cm}
+
+Reviewer's comment:
+
+\indent \question{The last sentence before section 4 has a typo ("extents" rather than "extends"). There are many more such in the appendix, which needs a bit more careful editing.}
+
+\vspace{0.25cm}
+
+Authors' reply:
+
+\indent Thank you for pointing this out. We have fixed this typo and edited the appendix.
+
+\vspace{0.5cm}
+
+\hrule
+
+\vspace{0.5cm}
+
+Reviewer's comment:
+
+\indent \question{In many cases, the authors dive directly into mathematical formalism without explaining the results. For example, it took me several readings before realizing that I could think of the scheme in equations 7-9, to a reasonably high degree of accuracy, as just dropping the high-order 32-n bits of the data. The text would be improved somewhat by a bit of unpacking along these lines, though it is acceptable as-is.}
+
+\vspace{0.25cm}
+
+Authors' reply:
+
+\indent We recognise that the derivation of the digitisation schemes was not as clear as possible. We have edited subsection 2.1 (Extreme Digitisation) to be more readily understood.
+
+
+
+\end{document}
