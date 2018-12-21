@@ -491,7 +491,7 @@ Hits Per Pixel & Channel & 1 Bit & 2 Bit & 3 Bit \\
  & BB  & $ 0.2480 \pm 0.0025 $  & $ 0.0633 \pm 0.0025 $  & $ 0.0175 \pm 0.0025 $ \\
 \end{tabular}
 \tablecomments{ 
-\changed{(TABLE HAS BEEN CHANGED) Fractional addition to the map noise level, $\Delta \sigma / \sigma$, due to one-, two-, and three-bit digitisation for $1/f$ detector noise with $1\sigma$ confidence intervals. As in the white noise case, we observe no significant trend between temperature and polarisation or for different depths of observation. We note that, even assuming a more realistic noise profile, three-bit digitisation only leads to a percent-level increase in the map noise level.}
+\changed{Fractional addition to the map noise level, $\Delta \sigma / \sigma$, due to one-, two-, and three-bit digitisation for $1/f$ detector noise with $1\sigma$ confidence intervals. As in the white noise case, we observe no significant trend between temperature and polarisation or for different depths of observation. We note that, even assuming a more realistic noise profile, three-bit digitisation only leads to a percent-level increase in the map noise level.}
 } \normalsize
 \end{center}
 \end{table*}
@@ -512,8 +512,10 @@ where all timestreams sample the same underlying signal, $\mu$, but add differen
 \langle D(\mu + \xi_1) D(\mu + \xi_2) \rangle = \sum_1 \sum_2 D(\mu + \xi_1) D(\mu + \xi_1) P(D(\mu + \xi_1)) P(D(\mu + \xi_2)),
 \end{equation}
 
-\changed{ where we sum over all output levels of both timestreams $(1, 2)$ and $P$ denotes the probability of an output level occurring. For current-generation CMB experiments it is common to draw from $>10^5$ samples to obtain an estimate of a map pixel. This corresponds to adding many noise realisation on top of the same signal, $\mu$. 
-The central limit theorem ensures that the amplitude probability distribution function of the noise in each pixel is Gaussian. 
+\changed{ where we sum over all output levels of both timestreams $(1, 2)$ and $P$ denotes the probability of an output level occurring. 
+The final estimate of the value in a map pixel is frequently based on $>10^5$ TOD samples in current CMB experiments, and this number will increase with the number of detectors for future experiments. 
+This can is equivalent to have many noise realisations on top of the same signal, $\mu$. 
+Given the number of samples, the central limit theorem ensures that the amplitude probability distribution function of the noise in each pixel is Gaussian. 
 The probabilities $P$ in the above expression can therefore be expressed as integrals over normal distributions, $p(\xi)$, with mean zero and standard deviation $\sigma$.}
 
 \begin{equation}
@@ -574,7 +576,7 @@ Equations \ref{eq:digitequalspacecondition} and \ref{eq:digitareacondition} in s
 \sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j \left( \psi_i^{k, n} \psi_j^{l, m} + (-1)^{k+1} \psi_{i}^{k, n} \psi_j^{l, m} + (-1)^{l+1} \psi_i^{k, n} \psi_{j}^{l, m} + (-1)^{k+l} \psi_{N-i}^{k, n} \psi_{N-j}^{l, m} \right),
 \end{equation}
 
-\changed{because} $\psi_{N-i}^{k,n} = (-1)^{k} \psi_{i}^{k,n}$. \changed{Since ground-based CMB experiments operate at low signal-to-noise we calculate the leading order terms of the signal, $\mu$, in equation \ref{eq:dcompleteklsum}. We split the sum over $k, l$ in said equation as follows:}
+\changed{because} $\psi_{N-i}^{k,n} = (-1)^{k} \psi_{i}^{k,n}$. \changed{Since the TOD of ground-based CMB experiments has low signal-to-noise, we calculate the leading order terms of the signal, $\mu$, in equation \ref{eq:dcompleteklsum}. We split the sum over $k, l$ in said equation as follows:}
 
 \begin{equation}
 \sum_{i,j = 0}^N y_i y_j \psi_i^{k, n} \psi_j^{l, m} = \sum_{i = 0}^{N/2}\sum_{j = 0}^{N/2} y_i y_j  \left( \psi_i^{k, n} \psi_j^{l, m} - \psi_{i}^{k, n} \psi_j^{l, m} - \psi_i^{k, n} \psi_{j}^{l, m} + \psi_{i}^{k, n} \psi_{j}^{l, m} \right) = 0 \changed{.}
