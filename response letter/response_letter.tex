@@ -81,7 +81,7 @@
 \Large MNRAS: MN-18-3671-MJ\\Response to the Referee
 \end{center}
 
-Thank you for your comments. We are pleased that you found our manuscript to be a valuable enquiry into data compression techniques for CMB experiments and a detailed investigation of the effects of few-bit digitisation on the CMB power spectra. We found your suggestion of looking at the compressive power of few-bit digitisation together with established lossless compression techniques particularly insightful and exciting to research. Please find a detailed response to your report below. Shown in blue are remarks in the reviewer's report. The authors' reply is given in black and if applicable relevant sections of the manuscript that have been changed in response are appended in red.
+Thank you for taking the time to reassess our manuscript and review our response. We appreciate your comments with regards to the compression power of few-bit digitisation in conjunction with existing data reduction methods. Please find a detailed response to the points you raised below.
 
 \vspace{0.5cm}
 
@@ -93,15 +93,15 @@ Thank you for your comments. We are pleased that you found our manuscript to be 
 
 Reviewer's comment:
 
-\indent \question{[...] the article's case is weakened considerably by a lack of comparison to existing lossless approaches to data compression used in the field. [...]}
+\indent \question{I am a bit shocked that the performance in conjunction with LPC-/PCM-based compression algorithms is as good as claimed here [...] My suspicion here is that the synthetic data under test have much higher entropy [...]}
 
 \vspace{0.25cm}
 
 Authors' reply:
 
-\indent The referee raises a fair point. We contacted the BICEP Array, POLARBEAR, and SPT-3G experiments to enquire about the lossless compression algorithms currently being used. BICEP uses a Lempel-Ziv-Markov chain algorithm (LZMA), while the SPT and POLARBEAR use the free lossless audio codec (FLAC). We applied few-bit digitisation to a simulated timestream and then applied each compression scheme to the few bit timestreams. 
-We compared this to the size of files when the two compression schemes were applied to the original 64bit timestreams. 
-We found that while using either LZMA or FLAC reduces the compressive power of extreme digitisation, substantial data volume savings are still achieved. We appended the following subsection to section 3 (Results) of the manuscript to include this insight:
+\indent We appreciate the concern raised. To address this issue appropriately we followed the referee's suggestion and repeated the analysis using genuine experimental data.
+We obtain SPT-3G data and use the FLAC compression algorithm used by the SPT. We apply few-bit digitisation to the TOD and apply FLAC. This allows us to compare the resulting file sizes between the few-bit data and the typical compression rates achieved for SPT-3G data.
+Applying FLAC to few-bit timestreams does not lead to additional data volume reduction. We altered subsection 3.3 to reflect this insight.
 
 \vspace{0.25cm}
 
@@ -109,11 +109,11 @@ Changes to the manuscript:
 
 \indent \textbf{\changed{3.3 Existing Compression Techniques}}
 
-\changed{Current-generation ground-based CMB experiments employ lossless and lossy compression techniques to manage their transmission bottlenecks. To test whether few-bit digitisation is competitive to existing lossy compression techniques, it is necessary to see if it still provides a substantial reduction in data volume if used in conjunction with lossless compression algorithms.}
+\changed{Current-generation ground-based CMB experiments employ a combination of lossly, e.g. downsampling, and lossless compression, e.g. FLAC, bzip, LZMA, to manage their transmission bottlenecks. We test whether the data volume of timestreams that have undergone few-bit digitisation can be reduced further by applying the most popular lossless compression algorithm: FLAC. }
 
-\changed{We focus on lossless compression via the Lempel-Ziv-Markoc chain algorithm (LZMA), which is used by the Background Imaging of Cosmic Extragalactic Polarization (BICEP) experiment, and the free lossless audio codec (FLAC), which the SPT and POLARBEAR experiments employ (private communication). We examine the compression of a single CES of our simulation, consisting of ca. $10^7$ data points, by applying LZMA and FLAC separately to four timestreams: the original 64-bit TOD, and copies that have undergone 1-, 2-, and 3-bit digitisation.}
+\changed{We obtain 2 minutes of SPT-3G TOD and apply the digitisation schemes in equations \ref{eq:1bit}-\ref{eq:3bit} before compressing the data further using FLAC. We compare the file size of FLAC compressed few-bit timestreams to the typical data reduction rate achieved for 24-bit SPT-3G data.}
 
-\changed{We find that even though the data reduction power of few-bit digitisation is decreased when used in conjunction with lossless compression algorithms, substantial savings are still achieved. Applying few-bit digitisation to the TOD prior to compression with FLAC reduces the final file size by a factor $5.89$ compared to the FLAC compressed 64-bit data. This is the same for all digitisation schemes considered. Working with LZMA, the data volume of the TOD can be reduced with respect to compressed 64-bit data by factors of $17.34$, $26.23$, and $44.48$ for 3-, 2-, and 1-bit digitisation, respectively. Few-bit digitisation still achieves considerable data reduction if used together with established lossless compression algorithms.}
+\changed{We find that using FLAC in conjunction with extreme digitisation does not yield additional data volume reduction. For 3-bit digitisation, both the FLAC and raw timestream have $\sim$3 bits per data point. In fact, due to the overhead required by FLAC compressed files perform marginally worse than uncompressed few-bit streams. This is unsurprising, given that we have already maximally compressed the data using extreme digitisation. For comparison, FLAC reduces the full 24-bit  SPT-3G data to $6-8$ bits of entropy per number. For this real-world case, three-bit digitisation reduces the data volume by a factor of $2-3$.}
 
 \vspace{0.5cm}
 
@@ -123,56 +123,19 @@ Changes to the manuscript:
 
 Reviewer's comment:
 
-\indent \question{It is unclear from the text what, exactly, the resulting scheme is after equation 13. I found equations 7-9 extremely helpful to understand the approach taken earlier and it would be very helpful to see the analogs (is it just replacing sigma in equations 7-9?)}
+\indent \question{[...] what is the impact on non-linearity in power spectrum estimation? [...]}
 
 \vspace{0.25cm}
 
 Authors' reply:
 
-\indent Yes, it is simply replacing $\sigma$ in equations 7-9. We have changed the wording of the relevant section to make this more clear.
+\indent Thank you for raising this point. Indeed the non-linearity introduced by few-bit digitisation disappears in the power spectrum estimation. This is because many TOD points contribute to each map pixel and hence the central limit theorem ensures that the distribution within each pixel approaches a Gaussian. We appended a sentence stating this to subsection 2.4 (Power Spectrum Estimation).
 
 \vspace{0.25cm}
 
 Changes to the manuscript:
 
-\indent \changed{We use the same digitisation schemes as for white noise, but replace the parameter $\sigma$ in equations \ref{eq:1bit}, \ref{eq:2bit} and \ref{eq:3bit} by considering Parseval's theorem on the above noise profile. The appropriate value is obtained by numerically evaluating the integral}
-
-\[ \changed{
-\sigma^2 = \int_0^\infty \left| N(\ell) \right|^2 d\ell. }
-\]
-
-\vspace{0.5cm}
-
-\hrule
-
-\vspace{0.5cm}
-
-Reviewer's comment:
-
-\indent \question{The last sentence before section 4 has a typo ("extents" rather than "extends"). There are many more such in the appendix, which needs a bit more careful editing.}
-
-\vspace{0.25cm}
-
-Authors' reply:
-
-\indent Thank you for pointing this out. We have fixed this typo and edited the appendix.
-
-\vspace{0.5cm}
-
-\hrule
-
-\vspace{0.5cm}
-
-Reviewer's comment:
-
-\indent \question{In many cases, the authors dive directly into mathematical formalism without explaining the results. For example, it took me several readings before realizing that I could think of the scheme in equations 7-9, to a reasonably high degree of accuracy, as just dropping the high-order 32-n bits of the data. The text would be improved somewhat by a bit of unpacking along these lines, though it is acceptable as-is.}
-
-\vspace{0.25cm}
-
-Authors' reply:
-
-\indent We recognise that the derivation of the digitisation schemes was not as clear as possible. We have edited subsection 2.1 (Extreme Digitisation) to be more readily understood.
-
+\indent \changed{Non-linearity introduced by the digitisation process disappears in the final map due to the large number of TOD points that contribute to each map pixel. Thus the digitisation effects are not an issue for power spectrum estimation.}
 
 
 \end{document}
